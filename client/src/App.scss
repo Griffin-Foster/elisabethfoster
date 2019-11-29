@@ -319,9 +319,37 @@ html, body {
 /* END SECTION PRAISE */
 
 /* SIDEBAR */
+.sidebar-component {
+  position    : fixed;
+  z-index     : 100;
+  font-family : 'Gotham Light Regular', sans-serif;
+}
+
 .sidebar {
-  position : fixed;
-  z-index: 100;
+  display        : flex;
+  flex-direction : column;
+  width          : 300px;
+
+  .header {
+    display         : flex;
+    flex            : 1;
+    justify-content : center;
+    align-items     : center;
+    font-family     : 'Gotham Black Regular', sans-serif;
+    font-size       : 24px;
+    color           : $mainBlack;
+    padding         : 20px 0;
+  }
+
+  .link {
+    text-decoration: none;
+
+    .text {
+      font-family: 'Gotham Medium', sans-serif;
+      color: $mainBlack;
+      text-decoration: none;
+    }
+  }
 }
 
 .sidebar-toggle {
