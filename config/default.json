@@ -1,0 +1,4 @@
+{
+    "mongoURI": "mongodb+srv://efAdmin:Ch0ch0san@cluster0-q336x.mongodb.net/elisabethfoster?retryWrites=true&w=majority",
+    "jwtSecret": "secret"
+}
