@@ -11,27 +11,27 @@ connectDB()
 
 // Init Middleware
 app.use(express.json({ extended: false }))
-
-app.use(csp({
-    // Specify directives as normal.
-    directives: {
-        defaultSrc: ["'self'", 'elisabethfoster.com'],
-        scriptSrc: ["'self'", "'unsafe-inline'"],
-        styleSrc: ['style.com'],
-        fontSrc: ["'self'", 'fonts.com'],
-        imgSrc: ['img.com', 'data:'],
-        sandbox: ['allow-forms', 'allow-scripts'],
-        reportUri: '/report-violation',
-        objectSrc: ["'none'"],
-        upgradeInsecureRequests: true,
-        workerSrc: false  // This is not set.
-    },
-    loose: false,
-    reportOnly: false,
-    setAllHeaders: false,
-    disableAndroid: false,
-    browserSniff: true
-}))
+//
+// app.use(csp({
+//     // Specify directives as normal.
+//     directives: {
+//         defaultSrc: ["'self'", 'elisabethfoster.com'],
+//         scriptSrc: ["'self'", "'unsafe-inline'"],
+//         styleSrc: ['style.com'],
+//         fontSrc: ["'self'", 'fonts.com'],
+//         imgSrc: ['img.com', 'data:'],
+//         sandbox: ['allow-forms', 'allow-scripts'],
+//         reportUri: '/report-violation',
+//         objectSrc: ["'none'"],
+//         upgradeInsecureRequests: true,
+//         workerSrc: false  // This is not set.
+//     },
+//     loose: false,
+//     reportOnly: false,
+//     setAllHeaders: false,
+//     disableAndroid: false,
+//     browserSniff: true
+// }))
 
 // Define Routes
 app.use('/api/users', require('./src/routes/users'))

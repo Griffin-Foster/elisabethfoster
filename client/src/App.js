@@ -21,19 +21,21 @@ if (localStorage.token) {
 }
 
 const App = () => {
+
+
     return (
         <AuthState>
             <AlertState>
                 <EventState>
                     <Router>
                         <div className="page">
-                            <Sidebar />
+                            {/*<Sidebar />*/}
                             <Alerts />
                             <Switch>
                                 <Route exact path="/" component={Home} />
-                                <Route exact path="/about" component={About} />
-                                <Route exact path="/events" component={Event} />
-                                <Route exact path="/contact" component={Contact} />
+                                <PrivateRoute exact path="/about" component={About} />
+                                <PrivateRoute exact path="/events" component={Event} />
+                                <PrivateRoute exact path="/contact" component={Contact} />
                                 <Route exact path="/register" component={Register} />
                                 <Route exact path="/login" component={Login} />
                                 <Redirect exact path="/home" to="/" />

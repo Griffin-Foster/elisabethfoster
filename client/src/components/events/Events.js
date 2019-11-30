@@ -19,7 +19,7 @@ const Events = () => {
     }
 
     return (
-        <Fragment>
+        <div className="events-container">
             {events !== null && !loading ? (
                 <TransitionGroup>
                     {filtered !== null
@@ -37,7 +37,7 @@ const Events = () => {
             ) : (
                 <Spinner />
             )}
-        </Fragment>
+        </div>
     )
 }
 

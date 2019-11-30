@@ -4,7 +4,7 @@ html, body {
   margin     : 0;
   padding    : 0;
   width      : 100%;
-  min-height : 100%;
+  height     : 100vh;
   overflow-x : hidden;
   display    : flex;
 }
@@ -342,12 +342,12 @@ html, body {
   }
 
   .link {
-    text-decoration: none;
+    text-decoration : none;
 
     .text {
-      font-family: 'Gotham Medium', sans-serif;
-      color: $mainBlack;
-      text-decoration: none;
+      font-family     : 'Gotham Medium', sans-serif;
+      color           : $mainBlack;
+      text-decoration : none;
     }
   }
 }
@@ -409,6 +409,14 @@ html, body {
     padding         : 35px 0;
   }
 
+  .events-container {
+    display         : flex;
+    justify-content : space-around;
+    align-items     : center;
+    flex-wrap       : wrap;
+    height          : 100%;
+  }
+
   .event-form {
     display         : flex;
     flex            : 1;
@@ -425,7 +433,7 @@ html, body {
   }
 
   .event.card {
-    width  : 250px;
+    width  : 300px;
     margin : 10px 25px;
   }
 }

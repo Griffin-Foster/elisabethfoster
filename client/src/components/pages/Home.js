@@ -4,7 +4,6 @@ import '../../App.scss'
 import NavigationLinks from '../layout/NavigationLinks'
 import NavigationButtons from '../layout/NavigationButtons'
 import Icons from '../img/Icons'
-import EmailOutlinedIcon from '@material-ui/icons/EmailOutlined';
 
 const Home = () => {
   const authContext = useContext(AuthContext)
