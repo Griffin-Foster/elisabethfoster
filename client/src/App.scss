@@ -4,17 +4,12 @@ html, body {
   margin     : 0;
   padding    : 0;
   width      : 100%;
-  height     : 100vh;
+  min-height : 100vh;
   overflow-x : hidden;
   display    : flex;
 }
 
-#root {
-  width  : 100%;
-  height : 100%;
-}
-
-.page {
+#root.page {
   display    : flex;
   width      : 100%;
   height     : auto;
@@ -159,10 +154,10 @@ html, body {
     align-items     : center;
     //flex-wrap       : wrap;
     width           : 100%;
-    margin : 40px 0;
+    margin          : 40px 0;
 
     &.buttons {
-      margin: 0;
+      margin : 0;
     }
   }
 }
@@ -188,7 +183,7 @@ html, body {
     padding : 15px 20px;
 
     &.disabled {
-      pointer-events: none;
+      pointer-events : none;
     }
   }
 }
@@ -294,7 +289,6 @@ html, body {
     -moz-transform    : scale(1.3);
   }
 }
-
 /* END SECTION LEFT */
 
 /* SECTION RIGHT */
@@ -305,15 +299,39 @@ html, body {
   align-items     : center;
   position        : relative;
   height          : 100%;
+
+  & .mySlides {
+    display : flex;
+    flex    : 1;
+    height  : 100%;
+
+    & img {
+      object-fit      : cover;
+      object-position : center;
+      width           : 100%;
+      height          : 100%;
+    }
+  }
 }
 
-.panel.home > .section.right img {
-  object-fit      : cover;
-  object-position : center;
-  width           : 100%;
-  height          : 100%;
+/* SLIDESHOW FADE ANIMATION */
+.fade {
+  -webkit-animation-name     : fade;
+  -webkit-animation-duration : 2s;
+  animation-name             : fade;
+  animation-duration         : 2s;
 }
 
+@-webkit-keyframes fade {
+  from {opacity : .3}
+  to {opacity : 1}
+}
+
+@keyframes fade {
+  from {opacity : .3}
+  to {opacity : 1}
+}
+/* END SLIDESHOW FADE ANIMATION */
 /* END SECTION RIGHT */
 
 /* SECTION PRAISE (QUOTES) */
@@ -396,7 +414,6 @@ html, body {
 .view-toggle.praise .text {
 
 }
-
 /* End Praise */
 /* END VIEW TOGGLE */
 
@@ -482,69 +499,78 @@ html, body {
 .mini-scrollbar:hover ::-webkit-scrollbar-thumb {
   background : $mainGray;
 }
-
-/* End Mini Scrollbar */
+/* END Mini Scrollbar */
 
 /* Rounded Scrollbar */
 .round-scrollbar::-webkit-scrollbar-thumb {
   border-radius : 50%;
 }
 
-/* End Rounded Scrollbar */
+/* END Rounded Scrollbar */
 
-@media screen and (max-width : 898px) {
+// SVG CUSTOMIZATIONS //
+.footer .icons {
+
+  & .icon:hover #instagram-icon {
+    //fill: $mainWhite;
+    //background: -moz-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    //background: -webkit-linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
+    //background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
+    //filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f09433', endColorstr='#bc1888',GradientType=1 );
+  }
+}
+svg#facebook-icon:hover {
+  fill: $facebookBlue;
+}
+// END SVG CUSTOMIZATIONS //
+
+// MEDIA QUERIES //
+
+// Extra small devices (phones, <= 600px) //
+//@media only screen and (max-width : 600px) {}
+
+// Small devices (portrait tables and large phones, >= 600px) //
+//@media only screen and (min-width : 600px) {}
+
+// ALL Smaller devices (<= 768px) //
+@media screen and (max-width : 768px) {
+  html, body {
+    height : auto;
+  }
+
   .page {
-    overflow-y : auto;
-    height     : auto;
+    height : auto;
   }
 
   .panel.home {
-    flex-direction : column-reverse;
+    flex-direction : column;
+    width          : 100%;
     height         : auto;
+
+    & .section {
+      width  : 100%;
+      height : auto;
+
+      &.left {
+        justify-content : center;
+        order           : 2;
+      }
+
+      &.right {
+        height : 45vh;
+        order  : 1;
+      }
+    }
   }
-
-  .panel.home > .section.left {
-    height          : auto;
-    justify-content : center;
-    width           : 100%;
-  }
-
-  .panel.home > .section.right {
-    width  : 100%;
-    height : 45vh;
-  }
 }
 
-/* Slideshow */
+// Medium devices (landscape tablets, >= 768px) //
+@media screen and (min-width : 768px) {}
 
-.mySlides {
-  display : flex;
-  width   : 100%;
-  height  : 100%;
-}
+// Large devices (laptops/desktops, >= 992px) //
+@media screen and (min-width : 992px) {}
 
-.mySlides img {
-  object-fit      : cover;
-  object-position : center;
-  width           : 100%;
-  height          : 100%;
-}
+// Extra large devices (large laptops/desktops, >= 1200px //
+@media screen and (min-width : 1200px) {}
 
-.fade {
-  -webkit-animation-name     : fade;
-  -webkit-animation-duration : 2s;
-  animation-name             : fade;
-  animation-duration         : 2s;
-}
-
-@-webkit-keyframes fade {
-  from {opacity : .3}
-  to {opacity : 1}
-}
-
-@keyframes fade {
-  from {opacity : .3}
-  to {opacity : 1}
-}
-
-/* End Slideshow */
+// END MEDIA QUERIES //

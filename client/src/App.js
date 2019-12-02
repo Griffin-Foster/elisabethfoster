@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import {BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom'
 import Home from './components/pages/Home'
 import About from './components/pages/About'
@@ -7,7 +7,7 @@ import Contact from './components/pages/Contact'
 import Register from './components/auth/Register'
 import Login from './components/auth/Login'
 import Alerts from './components/layout/Alerts'
-import Sidebar from './components/layout/Sidebar'
+// import Sidebar from './components/layout/Sidebar'
 import PrivateRoute from './components/routing/PrivateRoute'
 
 import AuthState from './context/auth/AuthState'
@@ -28,7 +28,7 @@ const App = () => {
             <AlertState>
                 <EventState>
                     <Router>
-                        <div className="page">
+                        <Fragment>
                             {/*<Sidebar />*/}
                             <Alerts />
                             <Switch>
@@ -40,7 +40,7 @@ const App = () => {
                                 <Redirect exact path="/login" to="/" component={Login} />
                                 <Redirect exact path="/home" to="/" />
                             </Switch>
-                        </div>
+                        </Fragment>
                     </Router>
                 </EventState>
             </AlertState>

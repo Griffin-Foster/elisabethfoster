@@ -10,7 +10,8 @@ const Contact = () => {
   }, [])
 
   return (
-    <div>
+    <div className="panel contact">
+
     </div>
   )
 }
