@@ -1,12 +1,12 @@
 @import 'variables';
 
 html, body {
-  margin     : 0;
-  padding    : 0;
+  display    : flex;
   width      : 100%;
   min-height : 100vh;
+  margin     : 0;
+  padding    : 0;
   overflow-x : hidden;
-  display    : flex;
 }
 
 #root.page {
@@ -24,7 +24,9 @@ html, body {
 
   &::after {
     display           : flex;
+    justify-self      : center;
     justify-content   : center;
+    align-self        : center;
     align-items       : center;
     content           : 'COMING SOON';
     position          : absolute;
@@ -462,6 +464,16 @@ html, body {
     margin : 10px 25px;
   }
 }
+// END EVENTS //
+
+// CONTACT //
+.panel.contact {
+  justify-content : center;
+  align-items     : center;
+  width           : 100%;
+  height          : 100%;
+}
+// END CONTACT //
 
 /* Mini Scrollbar */
 .mini-scrollbar::-webkit-scrollbar { /* Background Container */
@@ -520,7 +532,7 @@ html, body {
   }
 }
 svg#facebook-icon:hover {
-  fill: $facebookBlue;
+  //  fill : $facebookBlue;
 }
 // END SVG CUSTOMIZATIONS //
 
@@ -534,10 +546,6 @@ svg#facebook-icon:hover {
 
 // ALL Smaller devices (<= 768px) //
 @media screen and (max-width : 768px) {
-  html, body {
-    height : auto;
-  }
-
   .page {
     height : auto;
   }
@@ -557,6 +565,7 @@ svg#facebook-icon:hover {
       }
 
       &.right {
+        flex   : none;
         height : 45vh;
         order  : 1;
       }

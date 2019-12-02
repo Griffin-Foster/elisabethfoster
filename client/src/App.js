@@ -35,7 +35,7 @@ const App = () => {
                                 <Route exact path="/" component={Home} />
                                 <PrivateRoute exact path="/about" component={About} />
                                 <PrivateRoute exact path="/events" component={Event} />
-                                <PrivateRoute exact path="/contact" component={Contact} />
+                                <Route exact path="/contact" component={Contact} />
                                 <Redirect exact path="/register" to="/" component={Register} />
                                 <Redirect exact path="/login" to="/" component={Login} />
                                 <Redirect exact path="/home" to="/" />
