@@ -1,6 +1,7 @@
-import React, {Fragment, useContext} from 'react'
+import React from 'react'
+// import React, {Fragment, useContext} from 'react'
 import {Link} from 'react-router-dom'
-import AuthContext from '../../context/auth/authContext'
+// import AuthContext from '../../context/auth/authContext'
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer'
 import List from '@material-ui/core/List'
 import Divider from '@material-ui/core/Divider'
@@ -16,8 +17,8 @@ import MenuIcon from '@material-ui/icons/Menu'
 import Button from '@material-ui/core/Button'
 
 const Sidebar = () => {
-    const authContext = useContext(AuthContext)
-    const {isAuthenticated, isAdmin, logout, user} = authContext
+    // const authContext = useContext(AuthContext)
+    // const {isAuthenticated, isAdmin, logout, user} = authContext
 
     const [state, setState] = React.useState({
         top: false,
@@ -87,31 +88,31 @@ const Sidebar = () => {
         </div>
     )
 
-    const onLogout = () => {
-        logout()
-    }
-
-    const authLinks = (
-        <Fragment>
-            <li>Hello {user && user.name}</li>
-            <li>
-                <a onClick={onLogout} href="#!">
-                    <i className="fas fa-sign-out-alt" /><span className="hide-sm">Logout</span>
-                </a>
-            </li>
-        </Fragment>
-    )
-
-    const guestLinks = (
-        <Fragment>
-            <li>
-                <Link to="/register">Register</Link>
-            </li>
-            <li>
-                <Link to="/login">Login</Link>
-            </li>
-        </Fragment>
-    )
+    // const onLogout = () => {
+    //     logout()
+    // }
+    //
+    // const authLinks = (
+    //     <Fragment>
+    //         <li>Hello {user && user.name}</li>
+    //         <li>
+    //             <a onClick={onLogout} href="#!">
+    //                 <i className="fas fa-sign-out-alt" /><span className="hide-sm">Logout</span>
+    //             </a>
+    //         </li>
+    //     </Fragment>
+    // )
+    //
+    // const guestLinks = (
+    //     <Fragment>
+    //         <li>
+    //             <Link to="/register">Register</Link>
+    //         </li>
+    //         <li>
+    //             <Link to="/login">Login</Link>
+    //         </li>
+    //     </Fragment>
+    // )
 
     return (
         <div className="sidebar-component">

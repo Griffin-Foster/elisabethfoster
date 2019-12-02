@@ -1,5 +1,6 @@
-import React, { useContext, useEffect } from 'react'
-import AuthContext from '../../context/auth/authContext'
+import React from 'react'
+// import React, { useContext, useEffect } from 'react'
+// import AuthContext from '../../context/auth/authContext'
 import '../../App.scss'
 import NavigationLinks from '../layout/NavigationLinks'
 import NavigationButtons from '../layout/NavigationButtons'
@@ -15,7 +16,8 @@ const Home = () => {
 
   return (
       <div className="panel home">
-        <div className="section left mini-scrollbar rounded-scrollbar">
+        {/*<div className="section left mini-scrollbar rounded-scrollbar">*/}
+        <div className="section left">
           <div className="view-toggle praise" data-dialog="praise"></div>
           <div className="header">
             <span className="title lw-cs">elisabeth foster</span>
@@ -54,7 +56,7 @@ const Home = () => {
         </div>
         <div className="section right">
             <div className="mySlides fade">
-              <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80" alt="" />
+              <img src="/img/slideshow/back1.jpg" alt="" />
             </div>
         </div>
         <div className="section praise">

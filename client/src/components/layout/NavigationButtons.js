@@ -5,7 +5,7 @@ const NavigationButtons = (props) => {
 
   return (
     <Fragment>
-      <a href="/" target="_blank" className="link button">BUY!</a>
+      <a href="/" target="_blank" className="link button disabled">BUY!</a>
     </Fragment>
   )
 }
