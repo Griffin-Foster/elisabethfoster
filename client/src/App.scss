@@ -26,21 +26,28 @@ html, body {
   position       : relative;
   cursor         : not-allowed;
   color          : $mainGray !important;
+
+    &::after {
+      display           : none;
+      justify-content   : center;
+      align-items       : center;
+      content           : 'COMING SOON';
+      position          : absolute;
+      transform         : rotate(25deg);
+      -webkit-transform : rotate(-25deg);
+      -moz-transform    : rotate(-25deg);
+      -o-transform      : rotate(-25deg);
+      background        : $mainRasp;
+      padding           : 5px;
+      font-family       : 'Gotham Bold', sans-serif;
+      font-size         : 10px;
+      color             : $mainWhite;
+      opacity           : .3;
+    }
 }
 
-.link.closed::after {
-  content           : 'COMING SOON';
-  position          : absolute;
-  transform         : rotate(25deg);
-  -webkit-transform : rotate(-25deg);
-  -moz-transform    : rotate(-25deg);
-  -o-transform      : rotate(-25deg);
-  background        : $mainRasp;
-  padding           : 5px;
-  font-family       : 'Gotham Bold', sans-serif;
-  font-size         : 10px;
-  color             : $mainWhite;
-  opacity           : .3;
+.link.closed:hover::after {
+  display: flex;
 }
 
 .lw-cs {text-transform : lowercase;}
@@ -130,10 +137,9 @@ html, body {
 }
 
 .panel.home > .section.left .body .subtitle {
-  font-family   : 'Gotham Light Regular', sans-serif;
-  font-size     : 20px;
-  text-align    : center;
-  margin-bottom : 30px;
+  font-family : 'Gotham Light Regular', sans-serif;
+  font-size   : 20px;
+  text-align  : center;
 }
 
 .panel.home > .section.left .body .subtitle .book-title {

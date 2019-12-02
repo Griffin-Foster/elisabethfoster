@@ -6,12 +6,12 @@ import NavigationButtons from '../layout/NavigationButtons'
 import Icons from '../img/Icons'
 
 const Home = () => {
-  const authContext = useContext(AuthContext)
+  // const authContext = useContext(AuthContext)
 
-  useEffect(() => {
-    authContext.loadUser()
-    // eslint-disable-next-line
-  }, [])
+  // useEffect(() => {
+  //   authContext.loadUser()
+  //   // eslint-disable-next-line
+  // }, [])
 
   return (
       <div className="panel home">
@@ -40,13 +40,13 @@ const Home = () => {
           </div>
           <div className="footer">
             <div className="icons">
-              <a href="/" className="icon" target="_blank">
+              <a href="https://www.facebook.com/raspberrycoloredscars" className="icon" target="_blank" rel="noopener noreferrer">
                 <Icons icon="facebook" />
               </a>
-              <a href="/" className="icon" target="_blank">
+              <a href="https://www.instagram.com/raspberrycoloredscars" className="icon" target="_blank" rel="noopener noreferrer">
                 <Icons icon="instagram" />
               </a>
-              <a href="/" className="icon" target="_blank">
+              <a href="mailto:info.rcoloredscars@gmail.com" className="icon" target="_blank" rel="noopener noreferrer">
                 <Icons icon="mail" />
               </a>
             </div>

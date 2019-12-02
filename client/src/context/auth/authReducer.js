@@ -17,7 +17,7 @@ export default (state, action) => {
                 ...state,
                 isAuthenticated: true,
                 loading: false,
-                user: action.payload
+                user: action.payload,
             }
         case REGISTER_SUCCESS:
         case LOGIN_SUCCESS:
@@ -26,7 +26,7 @@ export default (state, action) => {
                 ...state,
                 ...action.payload,
                 isAuthenticated: true,
-                loading: false
+                loading: false,
             }
         case REGISTER_FAIL:
         case AUTH_ERROR:
@@ -40,21 +40,21 @@ export default (state, action) => {
                 isAdmin: false,
                 loading: false,
                 user: null,
-                error: action.payload
+                error: action.payload,
             }
         case CLEAR_ERRORS:
             return {
                 ...state,
-                error: null
+                error: null,
             }
         case TOGGLE_SIDEBAR:
             return {
                 ...state,
-                showSidebar: action.payload
+                showSidebar: action.payload,
             }
         default:
             return {
-                ...state
+                ...state,
             }
     }
 }
