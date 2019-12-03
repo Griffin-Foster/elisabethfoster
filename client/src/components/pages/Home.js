@@ -5,6 +5,7 @@ import '../../App.scss'
 import NavigationLinks from '../layout/NavigationLinks'
 import NavigationButtons from '../layout/NavigationButtons'
 import Icons from '../img/Icons'
+import MediaIcons from '../layout/MediaIcons'
 
 const Home = () => {
   // const authContext = useContext(AuthContext)
@@ -41,17 +42,7 @@ const Home = () => {
             </div>
           </div>
           <div className="footer">
-            <div className="icons">
-              <a href="https://www.facebook.com/raspberrycoloredscars" className="icon" target="_blank" rel="noopener noreferrer">
-                <Icons icon="facebook" />
-              </a>
-              <a href="https://www.instagram.com/raspberrycoloredscars" className="icon" target="_blank" rel="noopener noreferrer">
-                <Icons icon="instagram" />
-              </a>
-              <a href="mailto:info.raspberrycoloredscars@gmail.com" className="icon" target="_blank" rel="noopener noreferrer">
-                <Icons icon="mail" />
-              </a>
-            </div>
+            <MediaIcons />
           </div>
         </div>
         <div className="section right">

@@ -15,78 +15,28 @@ import TextsmsRoundedIcon from '@material-ui/icons/TextsmsRounded'
 import MailRoundedIcon from '@material-ui/icons/Mail'
 import MenuIcon from '@material-ui/icons/Menu'
 import Button from '@material-ui/core/Button'
+import MediaIcons from './MediaIcons'
+import Card from '@material-ui/core/Card'
+import CardActionArea from '@material-ui/core/CardActionArea'
+import CardMedia from '@material-ui/core/CardMedia'
+import CardContent from '@material-ui/core/CardContent'
+import Typography from '@material-ui/core/Typography'
+import CardActions from '@material-ui/core/CardActions'
 
 const Sidebar = () => {
     // const authContext = useContext(AuthContext)
     // const {isAuthenticated, isAdmin, logout, user} = authContext
 
     const [state, setState] = React.useState({
-        top: false,
-        left: false,
-        bottom: false,
-        right: false,
+        showSidebar: false,
     })
 
-    const toggleDrawer = (side, open) => event => {
+    const toggleDrawer = (open) => event => {
         if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
             return
         }
-
-        setState({...state, [side]: open})
+        setState({...state, showSidebar: open})
     }
-
-    const sideList = side => (
-        <div
-            className="sidebar"
-            role="presentation"
-            onClick={toggleDrawer(side, false)}
-            onKeyDown={toggleDrawer(side, false)}
-        >
-            <div className="header">elisabeth foster</div>
-            <Divider />
-            <List>
-                <Link to="/" className="link">
-                    <ListItem button>
-                        <ListItemIcon><HomeRoundedIcon /></ListItemIcon>
-                        <ListItemText primary="Home" className="text" />
-                    </ListItem>
-                </Link>
-                <Link to="/about" className="link">
-                    <ListItem button>
-                        <ListItemIcon><InfoRoundedIcon /></ListItemIcon>
-                        <ListItemText primary="About" className="text" />
-                    </ListItem>
-                </Link>
-                <Link to="/events" className="link">
-                    <ListItem button>
-                        <ListItemIcon><EventRoundedIcon /></ListItemIcon>
-                        <ListItemText primary="Events" className="text" />
-                    </ListItem>
-                </Link>
-                <Link to="/blog" className="link">
-                    <ListItem button>
-                        <ListItemIcon><TextsmsRoundedIcon /></ListItemIcon>
-                        <ListItemText primary="Blog" className="text" />
-                    </ListItem>
-                </Link>
-                <Link to="/contact" className="link">
-                    <ListItem button>
-                        <ListItemIcon><MailRoundedIcon /></ListItemIcon>
-                        <ListItemText primary="Contact" className="text" />
-                    </ListItem>
-                </Link>
-            </List>
-            <Divider />
-            {/*<List>*/}
-            {/*    {['All mail', 'Trash', 'Spam'].map((text, index) => (*/}
-            {/*        <ListItem button key={text}>*/}
-            {/*            <ListItemIcon>{index % 2 === 0 ? <EventIcon /> : <MailIcon />}</ListItemIcon>*/}
-            {/*            <ListItemText primary={text} />*/}
-            {/*        </ListItem>*/}
-            {/*    ))}*/}
-            {/*</List>*/}
-        </div>
-    )
 
     // const onLogout = () => {
     //     logout()
@@ -117,16 +67,90 @@ const Sidebar = () => {
     return (
         <div className="sidebar-component">
             {/*{isAuthenticated ? authLinks : guestLinks}*/}
-            <Button className="sidebar-toggle" onClick={toggleDrawer('left', true)}>
+            <Button className="sidebar-toggle" onClick={toggleDrawer(true)}>
                 <MenuIcon className="sidebar-icon" />
             </Button>
             <SwipeableDrawer
-                open={state.left}
-                onClose={toggleDrawer('left', false)}
-                onOpen={toggleDrawer('left', true)}
+                open={state.showSidebar}
+                onClose={toggleDrawer(false)}
+                onOpen={toggleDrawer(true)}
+                className="sidebar"
             >
-                {sideList('left')}
                 {/*{isAdmin ? admin links : don't show}*/}
+                <div
+                    className="column mini-scrollbar round-scrollbar"
+                    role="presentation"
+                    onClick={toggleDrawer(false)}
+                    onKeyDown={toggleDrawer(false)}
+                >
+                    <div className="header">elisabeth foster</div>
+                    <List className="list links">
+                        <Divider light />
+                        <Link to="/" className="link">
+                            <ListItem button>
+                                <ListItemIcon><HomeRoundedIcon /></ListItemIcon>
+                                <ListItemText primary="Home" className="text" />
+                            </ListItem>
+                        </Link>
+                        <Link to="/about" className="link">
+                            <ListItem button>
+                                <ListItemIcon><InfoRoundedIcon /></ListItemIcon>
+                                <ListItemText primary="About" className="text" />
+                            </ListItem>
+                        </Link>
+                        <Link to="/events" className="link">
+                            <ListItem button>
+                                <ListItemIcon><EventRoundedIcon /></ListItemIcon>
+                                <ListItemText primary="Events" className="text" />
+                            </ListItem>
+                        </Link>
+                        <Link to="/blog" className="link">
+                            <ListItem button>
+                                <ListItemIcon><TextsmsRoundedIcon /></ListItemIcon>
+                                <ListItemText primary="Blog" className="text" />
+                            </ListItem>
+                        </Link>
+                        <Link to="/contact" className="link">
+                            <ListItem button>
+                                <ListItemIcon><MailRoundedIcon /></ListItemIcon>
+                                <ListItemText primary="Contact" className="text" />
+                            </ListItem>
+                        </Link>
+                        <Divider />
+                        {/*<ListItem>*/}
+                        {/*    <div className="upcoming-event">*/}
+                        {/*        <Card className="card">*/}
+                        {/*            <CardActionArea>*/}
+                        {/*                <CardMedia*/}
+                        {/*                    component="img"*/}
+                        {/*                    alt="Alt text..."*/}
+                        {/*                    image={'/img/book2.jpg'}*/}
+                        {/*                    title="Event title"*/}
+                        {/*                />*/}
+                        {/*                 <CardContent>*/}
+                        {/*                     <Typography gutterBottom variant="h5" component="h2">Event</Typography>*/}
+                        {/*                     <Typography variant="body2" color="textSecondary" component="p">*/}
+                        {/*                        Event description cut short...*/}
+                        {/*                    </Typography>*/}
+                        {/*                </CardContent>*/}
+                        {/*            </CardActionArea>*/}
+                        {/*            <CardActions>*/}
+                        {/*                <Button size="small" color="primary">*/}
+                        {/*                    Share*/}
+                        {/*                </Button>*/}
+                        {/*                <Button size="small" color="primary">*/}
+                        {/*                    Learn More*/}
+                        {/*                </Button>*/}
+                        {/*            </CardActions>*/}
+                        {/*        </Card>*/}
+                        {/*    </div>*/}
+                        {/*    <Divider />*/}
+                        {/*</ListItem>*/}
+                    </List>
+                    <div className="footer">
+                        <MediaIcons />
+                    </div>
+                </div>
             </SwipeableDrawer>
         </div>
     )
