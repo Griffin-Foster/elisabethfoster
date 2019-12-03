@@ -114,7 +114,7 @@ const Contact = () => {
                         variant="outlined"
                         name="firstName"
                         value={firstName}
-
+                        required
                         onChange={onChange}
                     />
                     <TextField
@@ -125,7 +125,7 @@ const Contact = () => {
                         variant="outlined"
                         name="lastName"
                         value={lastName}
-
+                        required
                         onChange={onChange}
                     />
                 </div>
@@ -138,7 +138,7 @@ const Contact = () => {
                         variant="outlined"
                         name="email"
                         value={email}
-
+                        required
                         onChange={onChange}
                     />
                 </div>
@@ -150,7 +150,7 @@ const Contact = () => {
                         variant="outlined"
                         name="subject"
                         value={subject}
-
+                        required
                         onChange={onChange}
                     />
                 </div>
@@ -162,10 +162,13 @@ const Contact = () => {
                         variant="outlined"
                         name="message"
                         multiline
-                        rows="6"
-                        rowsMax="6"
+                        rows="8"
+                        rowsMax="8"
                         value={message}
-
+                        required
+                        inputProps={{
+                            className: 'mini-scrollbar round-scrollbar'
+                        }}
                         onChange={onChange}
                     />
                 </div>
