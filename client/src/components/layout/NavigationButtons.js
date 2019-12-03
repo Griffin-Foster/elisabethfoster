@@ -5,7 +5,7 @@ const NavigationButtons = (props) => {
 
   return (
     <Fragment>
-      <a href="/" target="_blank" className="link button disabled">BUY!</a>
+      <a href="https://www.amazon.com/dp/B08288QCDT/ref" target="_blank" rel="noopener noreferrer" className="link button">BUY!</a>
     </Fragment>
   )
 }

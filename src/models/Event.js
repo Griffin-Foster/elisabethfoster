@@ -28,7 +28,7 @@ const EventSchema = new Schema(
         imageURL: {
             type: String,
         },
-        imageL: {
+        image: {
             type: Buffer,
             contentType: String,
         },

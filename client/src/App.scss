@@ -16,34 +16,6 @@ html, body {
   min-height : 100%;
 }
 
-.link.closed {
-  pointer-events : none;
-  position       : relative;
-  cursor         : not-allowed;
-  color          : $mainGray !important;
-
-  &::after {
-    display           : flex;
-    justify-self      : center;
-    justify-content   : center;
-    align-self        : center;
-    align-items       : center;
-    content           : 'COMING SOON';
-    position          : absolute;
-    transform         : rotate(25deg);
-    -webkit-transform : rotate(-25deg);
-    -moz-transform    : rotate(-25deg);
-    -o-transform      : rotate(-25deg);
-    background        : $mainRasp;
-    padding           : 5px;
-    font-family       : 'Gotham Bold', sans-serif;
-    font-size         : .5rem;
-    color             : $mainWhite;
-    opacity           : .3;
-    white-space       : nowrap;
-  }
-}
-
 .lw-cs {text-transform : lowercase;}
 .up-cs {text-transform : uppercase;}
 
@@ -180,6 +152,34 @@ html, body {
   transition         : all .3s ease-out;
   -webkit-transition : all .3s ease-out;
   -moz-transition    : all .3s ease-out;
+
+  &.closed {
+    pointer-events : none;
+    position       : relative;
+    cursor         : not-allowed;
+    color          : $mainGray !important;
+
+    &::after {
+      display           : flex;
+      justify-self      : center;
+      justify-content   : center;
+      align-self        : center;
+      align-items       : center;
+      content           : 'COMING SOON';
+      position          : absolute;
+      transform         : rotate(25deg);
+      -webkit-transform : rotate(-25deg);
+      -moz-transform    : rotate(-25deg);
+      -o-transform      : rotate(-25deg);
+      background        : $mainRasp;
+      padding           : 5px;
+      font-family       : 'Gotham Bold', sans-serif;
+      font-size         : .5rem;
+      color             : $mainWhite;
+      opacity           : .3;
+      white-space       : nowrap;
+    }
+  }
 
   &.button {
     padding : 15px 20px;
@@ -349,6 +349,8 @@ html, body {
 /* SIDEBAR */
 .sidebar-component {
   position    : fixed;
+  top         : 10px;
+  left        : 10px;
   z-index     : 100;
   font-family : 'Gotham Light Regular', sans-serif;
 }
@@ -384,8 +386,6 @@ html, body {
   display            : flex;
   justify-content    : center;
   align-items        : center;
-  width              : 5px;
-  height             : 5px;
   position           : fixed;
   left               : 10px;
   top                : 10px;
@@ -468,10 +468,153 @@ html, body {
 
 // CONTACT //
 .panel.contact {
+  display         : flex;
   justify-content : center;
   align-items     : center;
   width           : 100%;
   height          : 100%;
+
+  & form.contact {
+    display         : flex;
+    flex-flow       : column wrap;
+    justify-content : center;
+    align-items     : center;
+    width           : 50%;
+    max-width       : 600px;
+    height          : auto;
+    padding         : 25px;
+    border-radius   : 15px;
+    box-shadow      : 0 3px 1px -1px rgba($mainBlack, 0.25),
+    1px 1px 1px 0 rgba($mainBlack, 0.15),
+    -3px 1px 3px 0 rgba($mainBlack, 0.15);
+    font-family     : 'Gotham Light Regular', sans-serif;
+
+    & .header {
+      display         : flex;
+      flex            : 1;
+      justify-content : center;
+      align-items     : center;
+      width           : 100%;
+      padding         : 25px 0 35px 0;
+      position        : relative;
+      font-family     : 'Gotham Black Regular', sans-serif;
+      font-size       : 2rem;
+      color           : $mainWhite;
+      margin-bottom   : 15px;
+
+      & .title {
+        z-index : 1;
+      }
+
+      & .background {
+        width                   : calc(100% + 50px);
+        height                  : 100%;
+        padding-top             : 25px;
+        background              : $mainRasp;
+        position                : absolute;
+        top                     : -25px;
+        z-index                 : 0;
+        border-top-left-radius  : 15px;
+        border-top-right-radius : 15px;
+      }
+    }
+
+    & .row {
+      display         : flex;
+      flex            : 1;
+      flex-wrap       : wrap;
+      justify-content : space-around;
+      width           : 100%;
+
+      & .formField {
+        flex      : 1;
+        min-width : 200px;
+        margin    : 10px;
+        color     : $mainBlack;
+
+        & label.Mui-focused {
+          color : $mainRasp;
+        }
+
+        & input:focus ~ fieldset,
+        textarea:focus ~ fieldset {
+          border-color : $mainRasp;
+        }
+
+        & input:-webkit-autofill,
+        .MuiOutlinedInput-input:-webkit-autofill,
+        .MuiOutlinedBase-input:-webkit-autofill {
+          background : $mainRasp !important;
+          box-shadow : inset 0 0 0 1px rgba(255, 255, 255, 0), inset 0 0 0 100px $mainWhite;
+        }
+      }
+
+      & .formSubmit {
+        font-family : 'Gotham Bold', sans-serif;
+        color       : $mainWhite;
+        background  : $mainRasp;
+        margin      : 25px 0 10px 0;
+
+        & .MuiButton-endIcon {}
+      }
+
+      &.alert {
+        flex               : 1;
+        flex-wrap          : nowrap;
+        justify-content    : space-between;
+        align-items        : center;
+        width              : calc(100% - 40px); // -20px (input margins), -20px (padding for justify:space-between)
+        padding            : 10px;
+        font-size          : .85rem;
+        border-radius      : 4px;
+        margin             : 10px 0;
+        transition         : all 0.5s ease-out;
+        -webkit-transition : all 0.5s ease-out;
+
+        &.error {
+          background : rgba($mainRed, .3);
+          border     : 1px solid $mainRasp;
+        }
+
+        &.success {
+          background : rgba($mainGreen, .3);
+          border     : 1px solid $mainGreen;
+        }
+
+        & .message {
+          display     : flex;
+          align-items : center;
+
+          & .icon {
+            fill : $mainBlack;
+          }
+        }
+
+        & .close {
+          display            : flex;
+          justify-content    : center;
+          align-items        : center;
+          width              : 1.5rem;
+          height             : 1.5rem;
+          position           : relative;
+          border-radius      : 100%;
+          cursor             : pointer;
+          transition         : all 0.3s ease-out;
+          -webkit-transition : all 0.3s ease-out;
+
+          &:hover {
+            background : rgba($mainGray, .3);
+          }
+
+          & svg {
+            fill   : $mainBlack;
+            width  : 1rem;
+            height : 1rem;
+          }
+        }
+      }
+    }
+  }
 }
 // END CONTACT //
 
@@ -569,6 +712,13 @@ svg#facebook-icon:hover {
         height : 45vh;
         order  : 1;
       }
+    }
+  }
+
+  .panel.contact {
+
+    & form.contact {
+      width : 85%;
     }
   }
 }

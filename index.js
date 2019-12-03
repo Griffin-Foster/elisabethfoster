@@ -2,7 +2,7 @@ const express = require('express')
 const connectDB = require('./config/db')
 const path = require('path')
 const cors = require('cors')
-const csp = require('helmet-csp')
+// const csp = require('helmet-csp')
 
 const app = express()
 // dotenv.config()
@@ -13,33 +13,13 @@ connectDB()
 
 // Init Middleware
 app.use(express.json({ extended: false }))
-//
-// app.use(csp({
-//     // Specify directives as normal.
-//     directives: {
-//         defaultSrc: ["'self'", 'elisabethfoster.com'],
-//         scriptSrc: ["'self'", "'unsafe-inline'"],
-//         styleSrc: ['style.com'],
-//         fontSrc: ["'self'", 'fonts.com'],
-//         imgSrc: ['img.com', 'data:'],
-//         sandbox: ['allow-forms', 'allow-scripts'],
-//         reportUri: '/report-violation',
-//         objectSrc: ["'none'"],
-//         upgradeInsecureRequests: true,
-//         workerSrc: false  // This is not set.
-//     },
-//     loose: false,
-//     reportOnly: false,
-//     setAllHeaders: false,
-//     disableAndroid: false,
-//     browserSniff: true
-// }))
 
 // Define Routes
 app.use('/api/users', require('./src/routes/users'))
 app.use('/api/auth', require('./src/routes/auth'))
 app.use('/api/posts', require('./src/routes/posts'))
 app.use('/api/events', require('./src/routes/events'))
+app.use('/api/submissions', require('./src/routes/submissions'))
 // app.use('/content', require('./routes/content'))
 
 // Serve static assets in production (Basically serve react)

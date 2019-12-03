@@ -48,7 +48,7 @@ const Home = () => {
               <a href="https://www.instagram.com/raspberrycoloredscars" className="icon" target="_blank" rel="noopener noreferrer">
                 <Icons icon="instagram" />
               </a>
-              <a href="mailto:info.rcoloredscars@gmail.com" className="icon" target="_blank" rel="noopener noreferrer">
+              <a href="mailto:info.raspberrycoloredscars@gmail.com" className="icon" target="_blank" rel="noopener noreferrer">
                 <Icons icon="mail" />
               </a>
             </div>

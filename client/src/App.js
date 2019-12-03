@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, {Fragment} from 'react'
 import {BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom'
 import Home from './components/pages/Home'
 import About from './components/pages/About'
@@ -7,7 +7,6 @@ import Contact from './components/pages/Contact'
 import Register from './components/auth/Register'
 import Login from './components/auth/Login'
 import Alerts from './components/layout/Alerts'
-// import Sidebar from './components/layout/Sidebar'
 import PrivateRoute from './components/routing/PrivateRoute'
 
 import AuthState from './context/auth/AuthState'
@@ -22,14 +21,12 @@ if (localStorage.token) {
 
 const App = () => {
 
-
     return (
         <AuthState>
             <AlertState>
                 <EventState>
                     <Router>
                         <Fragment>
-                            {/*<Sidebar />*/}
                             <Alerts />
                             <Switch>
                                 <Route exact path="/" component={Home} />

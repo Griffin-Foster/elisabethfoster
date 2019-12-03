@@ -45,34 +45,34 @@ const Sidebar = () => {
             <div className="header">elisabeth foster</div>
             <Divider />
             <List>
-                <Link to='/' className="link">
+                <Link to="/" className="link">
                     <ListItem button>
                         <ListItemIcon><HomeRoundedIcon /></ListItemIcon>
                         <ListItemText primary="Home" className="text" />
                     </ListItem>
                 </Link>
-                <Link to='/about' className="link">
+                <Link to="/about" className="link">
                     <ListItem button>
                         <ListItemIcon><InfoRoundedIcon /></ListItemIcon>
                         <ListItemText primary="About" className="text" />
                     </ListItem>
                 </Link>
-                <Link to='/events' className="link">
+                <Link to="/events" className="link">
                     <ListItem button>
                         <ListItemIcon><EventRoundedIcon /></ListItemIcon>
                         <ListItemText primary="Events" className="text" />
                     </ListItem>
                 </Link>
-                <Link to='/blog' className="link">
+                <Link to="/blog" className="link">
                     <ListItem button>
                         <ListItemIcon><TextsmsRoundedIcon /></ListItemIcon>
                         <ListItemText primary="Blog" className="text" />
                     </ListItem>
                 </Link>
-                <Link to='/contact' className="link">
+                <Link to="/contact" className="link">
                     <ListItem button>
                         <ListItemIcon><MailRoundedIcon /></ListItemIcon>
-                        <ListItemText primary="Home" className="text" />
+                        <ListItemText primary="Contact" className="text" />
                     </ListItem>
                 </Link>
             </List>
