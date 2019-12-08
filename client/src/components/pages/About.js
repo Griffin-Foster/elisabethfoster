@@ -2,6 +2,7 @@ import React, {useContext, useEffect} from 'react'
 import AuthContext from '../../context/auth/authContext'
 import Sidebar from '../layout/Sidebar'
 import MediaIcons from '../layout/MediaIcons'
+import Carousel from '../layout/Carousel'
 
 const About = () => {
     const authContext = useContext(AuthContext)
@@ -32,9 +33,7 @@ const About = () => {
                 </div>
             </div>
             <div className="section right">
-                <div className="mySlides fade">
-                    <img src="/img/slideshow/back1.jpg" alt="" />
-                </div>
+                <Carousel/>
             </div>
         </div>
     )

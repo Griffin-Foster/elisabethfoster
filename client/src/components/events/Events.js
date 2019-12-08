@@ -7,7 +7,7 @@ import EventContext from '../../context/event/eventContext'
 const Events = () => {
     const eventContext = useContext(EventContext)
 
-    const {events, filtered, getEvents, loading} = eventContext
+    const {events, filtered, getEvents, loading, error} = eventContext
 
     useEffect(() => {
         getEvents()

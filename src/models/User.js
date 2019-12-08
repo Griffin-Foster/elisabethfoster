@@ -1,33 +1,18 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
-const moment = require('moment')
 
 const UserSchema = new Schema(
     {
-        username: {
-            type: String,
-            required: [true, 'Error/Invalid: Username is required!'],
-            unique: true,
-            trim: true,
-            minlength: 4,
-            index: true,
-            validate: [
-                (input) => {
-                    return input.length >= 4
-                },
-                'Error/Invalid: Username must be at least 4 characters!',
-            ],
-        },
-        password: {
-            type: String,
-            minlength: 6,
-            required: true,
-        },
         email: {
             type: String,
             unique: true,
             match: [/.+@.+\..+/, 'Error/Invalid: Please enter a valid email address!'],
             index: true,
+        },
+        password: {
+            type: String,
+            minlength: 6,
+            required: true,
         },
         altLinks: {
             googleLink: String,
@@ -61,11 +46,9 @@ const UserSchema = new Schema(
             default: false,
         },
     },
-    {
-        timestamps: true,
-    },
+    { timestamps: true },
 )
 
-UserSchema.index({dateCreated: 1, dateModified: 1})
+UserSchema.index({createdAt: 1, updatedAt: 1})
 
-module.exports = mongoose.model('User', UserSchema)
+module.exports = mongoose.model('User', UserSchema, 'users')

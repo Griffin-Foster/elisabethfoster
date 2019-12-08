@@ -33,6 +33,6 @@ const ContactSubmissionSchema = new Schema(
     }, {timestamps: true},
 )
 
-ContactSubmissionSchema.index({dateCreated: 1})
+ContactSubmissionSchema.index({createdAt: 1})
 
-module.exports = mongoose.model('ContactSubmission', ContactSubmissionSchema)
+module.exports = mongoose.model('ContactSubmission', ContactSubmissionSchema, 'contactSubmissions')

@@ -37,7 +37,7 @@ const EventState = (props) => {
         } catch (err) {
             dispatch({
                 type: EVENT_ERROR,
-                payload: err.response.msg,
+                payload: 'No events found in the database.',
             })
         }
     }
@@ -134,6 +134,14 @@ const EventState = (props) => {
         dispatch({type: CLEAR_FILTER_EVENT})
     }
 
+    // Set Error
+    const setError = (error) => {
+        dispatch({
+            type: EVENT_ERROR,
+            payload: error,
+        })
+    }
+
     return (
         <EventContext.Provider
             value={{
@@ -150,6 +158,7 @@ const EventState = (props) => {
                 clearFilter,
                 getEvents,
                 clearEvents,
+                setError,
             }}
         >
             {props.children}

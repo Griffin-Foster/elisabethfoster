@@ -22,7 +22,6 @@ const AuthState = (props) => {
         loading: true,
         user: null,
         error: null,
-        showSidebar: false,
     }
 
     const [state, dispatch] = useReducer(authReducer, initialState)
@@ -108,11 +107,12 @@ const AuthState = (props) => {
             value={{
                 token: state.token,
                 isAuthenticated: state.isAuthenticated,
+                isAdmin: state.isAdmin,
                 loading: state.loading,
                 user: state.user,
                 error: state.error,
-                register,
                 loadUser,
+                register,
                 login,
                 logout,
                 clearErrors,

@@ -9,12 +9,10 @@ const Event = require('../models/Event')
 // @access    Public
 router.get('/', async (req, res) => {
     try {
-        const events = await Event.find({}).sort({
-            startDate: -1,
-        })
+        const events = await Event.find({}).sort({startDate: -1})
 
         // Send events in response
-        res.json(events)
+        res.status(200).json(events)
     } catch (err) {
         console.error(err)
         res.status(500).send('ERROR: Server Error!')
@@ -39,7 +37,7 @@ router.post(
         const errors = validationResult(req)
         if (!errors.isEmpty()) return res.status(500).json({errors: errors.array()})
 
-        const {name, description, startDate, finishDate, location, image} = req.body
+        const {name, description, startDate, finishDate, location, image, link} = req.body
 
         const eventFields = {}
         if (name) eventFields.name = name
@@ -48,6 +46,7 @@ router.post(
         if (finishDate) eventFields.finishDate = finishDate
         if (location) eventFields.location = location
         if (image) eventFields.image = image
+        if (link) eventFields.link = link
 
         // TODO: Check if image is null/empty and if true, set to default image
 
@@ -87,10 +86,7 @@ router.put('/:id', adminAuth, async (req, res) => {
         if (event.author.toString() !== req.user.id) return res.status(401).json({msg: 'Error: You are not authorized to edit this event!'})
 
         event = await Event.findByIdAndUpdate(req.params.id,
-            {
-                $set: eventFields,
-                $push: {updatedAt: Date.now},
-            },
+            {$set: eventFields},
             {new: true},
         )
 

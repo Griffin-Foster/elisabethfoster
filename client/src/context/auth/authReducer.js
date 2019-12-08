@@ -7,7 +7,6 @@ import {
     LOGIN_FAIL,
     LOGOUT,
     CLEAR_ERRORS,
-    TOGGLE_SIDEBAR,
 } from '../types'
 
 export default (state, action) => {
@@ -16,6 +15,7 @@ export default (state, action) => {
             return {
                 ...state,
                 isAuthenticated: true,
+                isAdmin: action.payload.isAdmin,
                 loading: false,
                 user: action.payload,
             }
@@ -26,6 +26,7 @@ export default (state, action) => {
                 ...state,
                 ...action.payload,
                 isAuthenticated: true,
+                isAdmin: false,
                 loading: false,
             }
         case REGISTER_FAIL:
@@ -46,11 +47,6 @@ export default (state, action) => {
             return {
                 ...state,
                 error: null,
-            }
-        case TOGGLE_SIDEBAR:
-            return {
-                ...state,
-                showSidebar: action.payload,
             }
         default:
             return {

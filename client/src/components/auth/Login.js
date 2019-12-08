@@ -15,12 +15,13 @@ const Login = (props) => {
     const authContext = useContext(AuthContext)
 
     const {setAlert} = alertContext
-    const {login, clearErrors, error, isAuthenticated} = authContext
+    const {login, clearErrors, error, isAuthenticated, isAdmin} = authContext
 
     useEffect(() => {
-        if (isAuthenticated) {
+        if (isAuthenticated)
             props.history.push('/')
-        }
+        if (isAuthenticated && isAdmin)
+            props.history.push('/')
 
         if (error === 'Invalid Credentials')
             setAlert(error, 'danger')
@@ -40,9 +41,11 @@ const Login = (props) => {
 
     const onSubmit = e => {
         e.preventDefault()
-        if (email === '' || password === '') {
-            setAlert('Please fill all fields', 'danger')
-        } else {
+        if (email.equals(''))
+            setAlert('Error/Invalid: Please provide an email address!', 'danger')
+        else if (password.equals(''))
+            setAlert('Error/Invalid: Please provide a password!', 'danger')
+        else {
             login({
                 email,
                 password,

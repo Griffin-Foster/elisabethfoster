@@ -26,9 +26,10 @@ router.get('/', auth, async (req, res) => {
 router.post(
     '/',
     [
-        check('username', 'Error/Invalid: Please enter a valid username!').not().isEmpty(),
-        check('username', 'Error/Invalid: Please enter a username with at least 4 characters!').isLength({min: 4}),
-        // check('email', 'Error/Invalid: Please enter a valid email address!').isEmail(),
+        // check('username', 'Error/Invalid: Please enter a valid username!').not().isEmpty(),
+        // check('username', 'Error/Invalid: Please enter a username with at least 4 characters!').isLength({min: 4}),
+        check('email', 'Error/Invalid: Please enter a valid email address!').not().isEmpty(),
+        check('email', 'Error/Invalid: Please enter a valid email address!').isEmail(),
         check('password', 'Error/Invalid: Please enter a valid password!').not().isEmpty(),
         check('password', 'Error/Invalid: Please enter a valid password!').exists(),
         check('password', 'Error/Invalid: Please enter a password with at least 6 characters!').isLength({min: 6}),
@@ -38,12 +39,12 @@ router.post(
         const errors = validationResult(req)
         if (!errors.isEmpty()) return res.status(400).json({errors: errors.array()})
 
-        const {username, password} = req.body
+        const {email, password} = req.body
 
         try {
             // Check for existing user with form username
-            let user = await User.findOne({username})
-            if (!user) return res.status(400).json({msg: 'Error/Invalid: A user with that username does not exist!'})
+            let user = await User.findOne({email})
+            if (!user) return res.status(400).json({msg: 'Error/Invalid: A user with that email does not exist!'})
 
             // Compare password with DB hashed password using bcrypt
             const isMatch = await bcrypt.compare(password, user.password)
