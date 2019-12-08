@@ -507,8 +507,7 @@ html, body {
   justify-content : center;
   align-items     : center;
   width           : 100%;
-  height          : 100%;
-  padding         : 30px 0;
+  min-height      : 100vh;
 
   & form.contact {
     display         : flex;
@@ -713,8 +712,8 @@ html, body {
         flex            : 1;
         justify-content : center;
         align-items     : center;
-        width           : 80px;
-        height          : 80px;
+        width           : 100%;
+        height          : 100px;
         padding         : 10px 0;
 
         > img {
@@ -722,7 +721,6 @@ html, body {
           justify-content : center;
           align-items     : center;
           height          : 100%;
-          border-radius   : 100px;
           object-fit      : cover;
           object-position : center;
         }
@@ -744,18 +742,18 @@ html, body {
 
     // Sidebar Body Section //
     & .body {
-      display         : flex;
-      flex            : 1;
-      flex-direction  : column;
-      justify-content : flex-start;
-      width           : calc(100% - 10px); // -10px and 3px padding for scrollbar
-      padding-right   : 3px;
-      overflow-y      : auto;
+      display                    : flex;
+      flex                       : 1 0;
+      flex-direction             : column;
+      width                      : calc(100% - 10px); // -10px and 3px padding for scrollbar
+      padding-right              : 3px;
+      overflow-y                 : auto;
+      -webkit-overflow-scrolling : auto;
 
       & .section {
         display        : flex;
-        flex           : 0 1;
         flex-direction : column;
+        flex-shrink    : 0;
         width          : 100%;
         padding        : 15px 0;
 
@@ -768,26 +766,34 @@ html, body {
           width           : 90%;
           padding         : 10px 0;
           font     : {
-            family : 'Gotham Black Regular'
+            family : 'Gotham Black Regular';
+            size   : 20px;
           }
-          font-family     : 'Gotham Black Regular', sans-serif;
-          font-size       : 1.5rem;
           cursor          : default;
-        }
-
-        & .link {
-          text-decoration : none;
-
-          & .text {
-            font-family     : 'Gotham Medium', sans-serif;
-            color           : $mainBlack;
-            text-decoration : none;
-          }
+          border-radius   : 4px;
+          box-shadow      : $paperBoxShadow;
         }
 
         // Sidebar Links Section //
         &.links {
-          //flex: 0 1;
+          display     : flex;
+          align-items : center;
+
+          & .list {
+            width    : 90%;
+            margin   : 10px 0 0 0;
+            overflow : hidden;
+
+            & .link {
+              text-decoration : none;
+
+              & .text {
+                font-family     : 'Gotham Medium', sans-serif;
+                color           : $mainBlack;
+                text-decoration : none;
+              }
+            }
+          }
         }
 
         // Sidebar Event Section //
@@ -800,29 +806,46 @@ html, body {
             flex            : 1;
             justify-content : center;
           }
+          // Event Card
+          & .event.card {
+            display        : flex;
+            flex-direction : column;
+            width          : 90%;
+            margin         : 10px 0;
+            box-shadow     : $cardBoxShadow2;
 
-          & .event {
-            & .card {
+            &:hover {
+              box-shadow : $cardBoxShadow4;
+            }
+
+            & .divider {
+              display    : flex;
+              align-self : center;
+              width      : 25%;
+              height     : 1px;
               margin     : 5px 0;
-              box-shadow : 0 0 6px 1px rgba($mainBlack, 0.25);
+              background : $mainRasp;
+            }
 
-              &:hover {
-                box-shadow : 0 0 12px 1px rgba($mainBlack, 0.35);
-              }
+            & .link {
+              display                 : flex;
+              flex                    : .5 0;
+              justify-content         : center;
+              align-items             : center;
+              text-decoration         : none;
+              border-top-left-radius  : 0;
+              border-top-right-radius : 0;
+            }
 
-              & .button {
-                font-family : 'Arial', sans-serif;
-                font-weight : 500;
-              }
+            & .row {
+              display : flex;
 
-              & .row {
-                display : flex;
-
-                &.center {
-                  justify-content : center;
-                }
+              &.center {
+                justify-content : center;
               }
             }
+
+            &:last-of-type {margin-bottom : 0;}
           }
         }
       }
@@ -857,6 +880,26 @@ html, body {
   }
 }
 // END SIDEBAR //
+
+// Material-UI Styles //
+.paper {
+  box-shadow            : $paperBoxShadow;
+  -webkit-box-shadow    : $paperBoxShadow;
+  border-radius         : 4px;
+  -webkit-border-radius : 4px;
+}
+.card {
+  box-shadow            : $cardBoxShadow2;
+  -webkit-box-shadow    : $cardBoxShadow2;
+  border-radius         : 4px;
+  -webkit-border-radius : 4px;
+
+  &:hover {
+    box-shadow         : $cardBoxShadow4;
+    -webkit-box-shadow : $cardBoxShadow4;
+  }
+}
+// END Material-UI Styles //
 
 // MEDIA ICONS //
 .icons {
@@ -897,66 +940,65 @@ html, body {
 // END MEDIA ICONS //
 
 // Mini Scrollbar //
-.mini-scrollbar::-webkit-scrollbar { // Background Container //
-  width              : $scrollBarWidth;
-  height             : 0;
-  margin-right       : 10px;
-  /* background: $mainRasp; */
-  background         : none;
-  position           : fixed;
-  right              : 10px;
-  top                : 0;
-  bottom             : 0;
-  cursor             : pointer;
-  transition         : all .5s ease-in-out;
-  -webkit-transition : all .5s ease-in-out;
-}
+.mini-scrollbar {
+  &::-webkit-scrollbar { // Background Container //
+    width              : $scrollBarWidth;
+    height             : 0;
+    margin-right       : 10px;
+    /* background: $mainRasp; */
+    background         : none;
+    position           : fixed;
+    right              : 10px;
+    top                : 0;
+    bottom             : 0;
+    cursor             : pointer;
+    transition         : all .5s ease-in-out;
+    -webkit-transition : all .5s ease-in-out;
+  }
 
-.mini-scrollbar::-webkit-scrollbar-track {
-  display            : none;
-  height             : 0;
-  background         : none;
-  cursor             : pointer;
-  transition         : all .5s ease-in-out;
-  -webkit-transition : all .5s ease-in-out;
-}
+  &::-webkit-scrollbar-track {
+    display            : none;
+    height             : 0;
+    background         : none;
+    cursor             : pointer;
+    transition         : all .5s ease-in-out;
+    -webkit-transition : all .5s ease-in-out;
+  }
 
-.mini-scrollbar::-webkit-scrollbar-thumb {
-  background         : rgba($mainRasp, .75);
-  cursor             : pointer;
-  transition         : all .5s ease-in-out;
-  -webkit-transition : all .5s ease-in-out;
-}
+  &::-webkit-scrollbar-thumb {
+    background         : rgba($mainRasp, .75);
+    cursor             : pointer;
+    transition         : all .5s ease-in-out;
+    -webkit-transition : all .5s ease-in-out;
+  }
 
-.mini-scrollbar:hover::-webkit-scrollbar-thumb {
-  background : $mainRasp;
+  &:hover::-webkit-scrollbar-thumb {
+    background : $mainRasp;
+  }
 }
-
 // END Mini Scrollbar //
 
 // Rounded Scrollbar //
 .round-scrollbar::-webkit-scrollbar-thumb {
   border-radius : 5px;
 }
-
 // END Rounded Scrollbar //
 
 // SVG CUSTOMIZATIONS //
 .footer .icons {
-
-  & .icon:hover #instagram-icon {
-    //fill: $mainWhite;
-    //background: -moz-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-    //background: -webkit-linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
-    //background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
-    //filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f09433', endColorstr='#bc1888',GradientType=1 );
+  & .icon:hover {
+    & #instagram-icon {
+      //fill: $mainWhite;
+      //background: -moz-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+      //background: -webkit-linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
+      //background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
+      //filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f09433', endColorstr='#bc1888',GradientType=1 );
+    }
+    & #facebook-icon {
+      //  fill : $facebookBlue;
+    }
   }
 }
-
-svg#facebook-icon:hover {
-  //  fill : $facebookBlue;
-}
-
 // END SVG CUSTOMIZATIONS //
 
 // MEDIA QUERIES //
@@ -973,6 +1015,13 @@ svg#facebook-icon:hover {
     height : auto;
   }
 
+  .sidebar-component {
+    & .sidebar-toggle {
+      background : $mainWhite;
+      box-shadow : 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 5px 8px 0px rgba(0, 0, 0, 0.14), 0px 1px 14px 0px rgba(0, 0, 0, 0.12);
+    }
+  }
+
   .panel {
     &.home,
     &.about {
@@ -983,16 +1032,25 @@ svg#facebook-icon:hover {
       > .section {
         width  : 100%;
         height : auto;
-        // Top //
+        // Section Right (Top) //
         &.right {
           flex   : none;
-          height : 45vh;
+          height : 40vh;
           order  : 1;
+
+          & #carousel img {
+            width : 100vw;
+          }
         }
-        // Bottom //
+        // Section Left (Bottom) //
         &.left {
-          justify-content : space-around;
-          order           : 2;
+          //justify-content : space-around;
+          order : 2;
+
+          > .body {
+            //justify-content: flex-start;
+            height : auto;
+          }
 
           & .links {
             width : 75%;
@@ -1000,15 +1058,17 @@ svg#facebook-icon:hover {
         }
       }
     }
-  }
+    // Contact Panel //
+    &.contact {
+      padding : 65px 0;
 
-  .panel.contact {
-    & form.contact {
-      width : 75%;
+      & form.contact {
+        width : 75%;
 
-      & .formField {
-        min-width : 0;
-        width     : 100%;
+        & .formField {
+          min-width : 0;
+          width     : 100%;
+        }
       }
     }
   }

@@ -37,7 +37,7 @@ router.post(
         const errors = validationResult(req)
         if (!errors.isEmpty()) return res.status(500).json({errors: errors.array()})
 
-        const {name, description, startDate, finishDate, location, image, link} = req.body
+        const {name, description, startDate, finishDate, location, link, linkText, imageURL, image} = req.body
 
         const eventFields = {}
         if (name) eventFields.name = name
@@ -45,8 +45,10 @@ router.post(
         if (startDate) eventFields.startDate = startDate
         if (finishDate) eventFields.finishDate = finishDate
         if (location) eventFields.location = location
+        if (imageURL) eventFields.imageURL = imageURL
         if (image) eventFields.image = image
         if (link) eventFields.link = link
+        if (linkText) eventFields.linkText = linkText
 
         // TODO: Check if image is null/empty and if true, set to default image
 

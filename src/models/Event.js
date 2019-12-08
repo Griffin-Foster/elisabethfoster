@@ -33,6 +33,7 @@ const EventSchema = new Schema(
             contentType: String,
         },
         link: String,
+        linkText: String,
         meta: {
             usersViewed: [{ // Track when people view the event
                 type: Schema.Types.ObjectId,

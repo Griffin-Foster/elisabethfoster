@@ -15,7 +15,6 @@ import {
     CardContent,
     Typography,
     CardActions,
-    Paper,
     IconButton,
 } from '@material-ui/core'
 import LinkIcon from '@material-ui/icons/Link'
@@ -27,18 +26,12 @@ import TextsmsRoundedIcon from '@material-ui/icons/TextsmsRounded'
 import MailRoundedIcon from '@material-ui/icons/Mail'
 import MenuIcon from '@material-ui/icons/Menu'
 import MediaIcons from './MediaIcons'
-import ButtonGroup from '@material-ui/core/ButtonGroup'
 
 const Sidebar = () => {
     const authContext = useContext(AuthContext)
-    const eventContext = useContext(EventContext)
     const {isAuthenticated, isAdmin, logout, user} = authContext
-    const {events, filtered, getEvents, loading, error, setError} = eventContext
-
-    // useEffect(() => {
-    //     getEvents()
-    //     // eslint-disable-next-line
-    // }, [])
+    const eventContext = useContext(EventContext)
+    const {events, getEvents, loading, error} = eventContext
 
     const [state, setState] = useState({
         showSidebar: false,
@@ -47,15 +40,6 @@ const Sidebar = () => {
     const handleRefresh = () => {
         getEvents()
     }
-    // const handleRefresh = async () => {
-    //     setEventState({...eventState, refreshing: true})
-    //     try {
-    //         const res = await axios.get(`/api/events${eventState.limit > 0 ? '?_limit=' + eventState.limit : ''}`)
-    //         setEventState({...eventState, events: res.data, refreshing: false})
-    //     } catch (err) {
-    //         return setEventState({...eventState, error: 'Error! There are no events.', refreshing: false})
-    //     }
-    // }
 
 
     const toggleDrawer = (open) => event => {
@@ -63,7 +47,9 @@ const Sidebar = () => {
             return
         if (event && event.type === 'click' && (event.target.classList.contains('ignore') || event.target.className.toString().includes('ignore')))
             return
-        setState({...state, showSidebar: open})
+        if (event && event.type === 'touch' && (event.touchstart.classList.contains('ignore') || event.touchstart.className.toString().includes('ignore')))
+            return
+        setState({showSidebar: open})
     }
 
     const onLogout = () => {
@@ -73,7 +59,7 @@ const Sidebar = () => {
     const headerSection = (
         <div className="section header">
             <div className="logo">
-                <img src={'/img/book3.jpg'} alt="Raspberry Colored Scars" className="img" />
+                <img src={'/img/book2.jpg'} alt="Raspberry Colored Scars" className="img" />
             </div>
             <div className="banner">elisabeth foster</div>
         </div>
@@ -101,92 +87,84 @@ const Sidebar = () => {
 
     const pageLinks = (
         <div className="section links">
-            <Paper className="title" elevation={5}>
+            <div className="title paper">
                 Pages
                 <IconButton classes={{root: 'ignore'}}>
                     <LinkIcon className="ignore" />
                 </IconButton>
-            </Paper>
-            <List className="list">
+            </div>
+            <div className="list card">
                 <Link to="/" className="link">
-                    <ListItem button>
+                    <ListItem button className="listItem">
                         <ListItemIcon><HomeRoundedIcon /></ListItemIcon>
                         <ListItemText primary="Home" className="text" />
                     </ListItem>
                 </Link>
                 <Link to="/about" className="link">
-                    <ListItem button>
+                    <ListItem button className="listItem">
                         <ListItemIcon><InfoRoundedIcon /></ListItemIcon>
                         <ListItemText primary="About" className="text" />
                     </ListItem>
                 </Link>
                 <Link to="/events" className="link">
-                    <ListItem button>
+                    <ListItem button className="listItem">
                         <ListItemIcon><EventRoundedIcon /></ListItemIcon>
                         <ListItemText primary="Events" className="text" />
                     </ListItem>
                 </Link>
                 <Link to="/blog" className="link">
-                    <ListItem button>
+                    <ListItem button className="listItem">
                         <ListItemIcon><TextsmsRoundedIcon /></ListItemIcon>
                         <ListItemText primary="Blog" className="text" />
                     </ListItem>
                 </Link>
                 <Link to="/contact" className="link">
-                    <ListItem button>
+                    <ListItem button className="listItem">
                         <ListItemIcon><MailRoundedIcon /></ListItemIcon>
                         <ListItemText primary="Contact" className="text" />
                     </ListItem>
                 </Link>
-            </List>
+            </div>
         </div>
     )
 
     const Event = props => {
-        const {name, description, location, link} = props.event
+        const {name, description, link, linkText} = props.event
         return (
-            <ListItem>
-                <div className="event">
-                    <Card className="card">
-                        <CardActionArea>
-                            {/*<CardMedia*/}
-                            {/*    component="img"*/}
-                            {/*    alt="Book launch"*/}
-                            {/*    image="/img/book2.jpg"*/}
-                            {/*    title="Book launch"*/}
-                            {/*/>*/}
-                            <CardContent>
-                                <Typography gutterBottom variant="h5" component="h2">{name}</Typography>
-                                <Typography variant="body1">{location}</Typography>
-                                <Typography variant="body2" color="textSecondary" component="p">
-                                    {description}
-                                    {/*Raspberry Colored Scars is now available for purchase on Amazon.com!*/}
-                                </Typography>
-                            </CardContent>
-                        </CardActionArea>
-                        <CardActions className="row center">
-                            <Button
-                                size="large"
-                                href={link}
-                                target="_blank"
-                                className="button"
-                            >
-                                Buy now
-                            </Button>
-                        </CardActions>
-                    </Card>
-                </div>
-            </ListItem>
+            <Card className="event card">
+                {/*<CardActionArea>*/}
+                    {/*<CardMedia*/}
+                    {/*    component="img"*/}
+                    {/*    alt="Book launch"*/}
+                    {/*    image="/img/book2.jpg"*/}
+                    {/*    title="Book launch"*/}
+                    {/*/>*/}
+                    <CardContent>
+                        <Typography gutterBottom variant="h5" component="h2">{name}</Typography>
+                        {/*<Typography variant="body1">{location}</Typography>*/}
+                        <Typography variant="body2" color="textSecondary" component="p">
+                            {description}
+                        </Typography>
+                    </CardContent>
+                {/*</CardActionArea>*/}
+                {link !== '' && <span className="divider"/>}
+                {link !== '' ?
+                    <Button component="a" className="link" href={link} target="_blank" rel="noopener noreferrer">
+                        {linkText}
+                    </Button>
+                    : ''}
+            </Card>
         )
     }
 
     const eventSection = (
         <div className="section event">
-            <Paper className="title" elevation={5}>Events
+            <div className="title paper">Events
                 <IconButton classes={{root: 'ignore'}} onClick={handleRefresh}>
-                    <RefreshIcon className={'ignore ' + (loading ? 'loading' : '')} classes={{root: loading && 'loading'}}/>
+                    <RefreshIcon className={'ignore ' + (loading ? 'loading' : '')}
+                                 classes={{root: loading && 'loading'}} />
                 </IconButton>
-            </Paper>
+            </div>
             {/*<ButtonGroup className="switcher" aria-label="small outlined button group">*/}
             {/*    <Button classes={{label: 'ignore'}} value={'recent'} onClick={handleRefresh}>Sort</Button>*/}
             {/*</ButtonGroup>*/}
@@ -201,7 +179,7 @@ const Sidebar = () => {
     const isAuthenticatedAdminLinks = (
         <div className="section">
             <div className="title"></div>
-            <List className="list">
+            <div className="list">
                 <Link to="/admin" className="link">
                     <ListItem button>
                         <ListItemIcon><HomeRoundedIcon /></ListItemIcon>
@@ -226,7 +204,7 @@ const Sidebar = () => {
                         <ListItemText primary="Contact" className="text" />
                     </ListItem>
                 </Link>
-            </List>
+            </div>
         </div>
     )
 
@@ -249,7 +227,7 @@ const Sidebar = () => {
                 >
                     {/*{isAuthenticated ? headerSection : ''}*/}
                     {headerSection}
-                    <List className="body mini-scrollbar round-scrollbar">
+                    <div className="body mini-scrollbar round-scrollbar">
                         <Divider />
                         {pageLinks}
                         <Divider />
@@ -257,7 +235,7 @@ const Sidebar = () => {
                         {isAdmin ? isAuthenticatedAdminLinks(<Divider />) : ''}
                         {eventSection}
                         <Divider />
-                    </List>
+                    </div>
                     <div className="section footer">
                         <MediaIcons />
                     </div>

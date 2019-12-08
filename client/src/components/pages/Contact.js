@@ -29,6 +29,7 @@ const Contact = () => {
                 owner: isAuthenticated ? user.id : null,
             })
         }
+        // eslint-disable-next-line
     }, [contactContext, contactFormData])
 
     const [formData, setFormData] = useState({
