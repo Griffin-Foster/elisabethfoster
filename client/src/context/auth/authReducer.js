@@ -18,6 +18,7 @@ export default (state, action) => {
                 isAdmin: action.payload.isAdmin,
                 loading: false,
                 user: action.payload,
+                error: null,
             }
         case REGISTER_SUCCESS:
         case LOGIN_SUCCESS:
@@ -28,10 +29,30 @@ export default (state, action) => {
                 isAuthenticated: true,
                 isAdmin: false,
                 loading: false,
+                error: null,
             }
         case REGISTER_FAIL:
-        case AUTH_ERROR:
         case LOGIN_FAIL:
+            localStorage.removeItem('token')
+            return {
+                ...state,
+                token: null,
+                isAuthenticated: false,
+                isAdmin: false,
+                loading: false,
+                user: null,
+                error: action.payload.msg,
+            }
+        case AUTH_ERROR:
+            return {
+                ...state,
+                token: null,
+                isAuthenticated: false,
+                isAdmin: false,
+                loading: false,
+                user: null,
+                error: null,
+            }
         case LOGOUT:
             localStorage.removeItem('token')
             return {
@@ -41,7 +62,7 @@ export default (state, action) => {
                 isAdmin: false,
                 loading: false,
                 user: null,
-                error: action.payload,
+                error: null,
             }
         case CLEAR_ERRORS:
             return {
@@ -51,6 +72,7 @@ export default (state, action) => {
         default:
             return {
                 ...state,
+                error: null,
             }
     }
 }

@@ -463,28 +463,20 @@ html, body {
   width           : 100%;
   height          : 100%;
 
+  &.section.header {
+    display: flex;
+    flex: 1 0;
+    align-items: center;
+    height: 15%;
+    padding: 25px 0;
+  }
+
   .event-filter {
     display         : flex;
     flex            : 1;
     justify-content : space-around;
     align-items     : center;
     padding         : 35px 0;
-  }
-
-  .events-container {
-    display         : flex;
-    justify-content : space-around;
-    align-items     : center;
-    flex-wrap       : wrap;
-    height          : 100%;
-  }
-
-  .event-form {
-    display         : flex;
-    flex            : 1;
-    justify-content : space-around;
-    align-items     : center;
-    padding         : 25px 0;
   }
 
   .card-container {
@@ -508,8 +500,29 @@ html, body {
   align-items     : center;
   width           : 100%;
   min-height      : 100vh;
+}
+// END CONTACT //
 
-  & form.contact {
+// REGISTER //
+.panel {
+  &.register,
+  &.login {
+    display         : flex;
+    justify-content : center;
+    align-items     : center;
+    width           : 100%;
+    min-height      : 100vh;
+
+    & form {
+      //max-width: 450px !important;
+    }
+  }
+}
+// END REGISTER //
+
+// Form Panel //
+.panel.form {
+  & form {
     display         : flex;
     flex-flow       : column wrap;
     justify-content : center;
@@ -562,11 +575,37 @@ html, body {
       justify-content : space-around;
       width           : 100%;
 
+      &.redirect {
+        margin-top : 10px;
+        text-align : center;
+      }
+
       & .formField {
         flex      : 1;
         min-width : 200px;
         margin    : 10px;
         color     : $mainBlack;
+
+        &.error {
+          & label {
+            color : $mainBlack !important;
+          }
+
+          & fieldset {
+            border     : 2px solid $mainRed !important;
+            background : rgba($mainRed, .2);
+          }
+        }
+
+        &.success {
+          & label {
+            color : $mainBlack !important;
+          }
+          & fieldset {
+            border     : 2px solid $mainGreen !important;
+            background : rgba($mainGreen, .2);
+          }
+        }
 
         & label.Mui-focused {
           color : $mainRasp;
@@ -597,6 +636,7 @@ html, body {
       &.alert {
         flex               : 1;
         flex-wrap          : nowrap;
+        justify-content    : space-between;
         align-items        : center;
         width              : calc(100% - 40px); // -20px (input margins), -20px (padding for justify:space-between)
         padding            : 10px;
@@ -617,19 +657,20 @@ html, body {
         }
 
         & .icon {
-          fill : $mainBlack;
+          justify-self : start !important;
+          fill         : $mainBlack;
         }
 
         & .message {
-          display      : flex;
-          justify-self : start;
-          align-items  : center;
-          margin-left  : 5px;
+          display     : flex;
+          flex        : 0.95 0;
+          align-items : center;
+          margin-left : 5px;
         }
 
         & .close {
           display            : flex;
-          justify-self       : end;
+          justify-self       : end !important;
           justify-content    : center;
           align-items        : center;
           width              : 1.5rem;
@@ -654,7 +695,7 @@ html, body {
     }
   }
 }
-// END CONTACT //
+// END Form Panel //
 
 // SIDEBAR //
 .sidebar-component {
@@ -1059,16 +1100,17 @@ html, body {
       }
     }
     // Contact Panel //
-    &.contact {
+    &.contact,
+    &.register {
       padding : 65px 0;
+    }
 
-      & form.contact {
-        width : 75%;
+    &.form form {
+      width : 75%;
 
-        & .formField {
-          min-width : 0;
-          width     : 100%;
-        }
+      & .formField {
+        min-width : 0;
+        width     : 100%;
       }
     }
   }

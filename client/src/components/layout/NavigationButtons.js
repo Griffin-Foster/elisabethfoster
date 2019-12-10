@@ -5,7 +5,7 @@ const NavigationButtons = (props) => {
 
   return (
     <Fragment>
-      <a href="https://www.amazon.com/dp/B08288QCDT/ref" target="_blank" rel="noopener noreferrer" className="link button">BUY!</a>
+      <a href="https://www.amazon.com/Elisabeth-Foster/e/B0829CFKBV?ref=sr_ntt_srch_lnk_1&qid=1575939848&sr=8-1" target="_blank" rel="noopener noreferrer" className="link button">BUY!</a>
     </Fragment>
   )
 }

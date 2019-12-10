@@ -7,8 +7,11 @@ import Blog from './components/pages/Blog'
 import Contact from './components/pages/Contact'
 import Register from './components/auth/Register'
 import Login from './components/auth/Login'
+import Logout from './components/auth/Logout'
 import Alerts from './components/layout/Alerts'
+import NoAuthRoute from './components/routing/NoAuthRoute'
 import PrivateRoute from './components/routing/PrivateRoute'
+import AdminRoute from './components/routing/AdminRoute'
 
 import AuthState from './context/auth/AuthState'
 import AlertState from './context/alert/AlertState'
@@ -22,7 +25,6 @@ if (localStorage.token) {
 }
 
 const App = () => {
-
     return (
         <AuthState>
             <AlertState>
@@ -31,16 +33,17 @@ const App = () => {
                         <Fragment>
                             <Alerts />
                             <Switch>
+                                <NoAuthRoute exact path="/register" component={Register} />
+                                <NoAuthRoute exact path="/login" component={Login} />
+                                <PrivateRoute exact path="/logout" component={Logout} />
+                                <Redirect exact path="/home" to="/" />
                                 <Route exact path="/" component={Home} />
                                 <Route exact path="/about" component={About} />
-                                <Redirect exact path="/events" to="/" component={Event} />
-                                <PrivateRoute exact path="/blog" component={Blog} />
+                                <AdminRoute exact path="/events" component={Event} />
+                                <AdminRoute exact path="/blog" component={Blog} />
                                 <ContactState>
                                     <Route exact path="/contact" component={Contact} />
                                 </ContactState>
-                                <Redirect exact path="/register" to="/" component={Register} />
-                                <Redirect exact path="/login" to="/" component={Login} />
-                                <Redirect exact path="/home" to="/" />
                             </Switch>
                         </Fragment>
                     </Router>

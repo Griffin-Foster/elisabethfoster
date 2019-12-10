@@ -1,18 +1,21 @@
 import React, {useContext, useEffect} from 'react'
-import Grid from '@material-ui/core/Grid'
 import AuthContext from '../../context/auth/authContext'
+import Sidebar from '../layout/Sidebar/Sidebar'
 
 const Blog = () => {
     const authContext = useContext(AuthContext)
+    const {loadUser} = authContext
+    // , isAuthenticated, isAdmin, user
 
     useEffect(() => {
-        authContext.loadUser()
+        loadUser()
         // eslint-disable-next-line
     }, [])
 
     return (
-        <Grid container className="panel blog">
-        </Grid>
+        <div className="panel blog">
+            <Sidebar />
+        </div>
     )
 }
 

@@ -1,22 +1,24 @@
 import React, {useContext, useEffect} from 'react'
+import AuthContext from '../../context/auth/authContext'
 import EventFilter from '../events/EventFilter'
 import Events from '../events/Events'
-import Grid from '@material-ui/core/Grid'
-import AuthContext from '../../context/auth/authContext'
+import Sidebar from '../layout/Sidebar/Sidebar'
 
 const EventsPage = () => {
     const authContext = useContext(AuthContext)
+    const {loadUser, user} = authContext
 
     useEffect(() => {
-        authContext.loadUser()
+        loadUser()
         // eslint-disable-next-line
     }, [])
 
     return (
-        <Grid container className="panel events">
+        <div className="panel events">
+            <Sidebar />
             <EventFilter />
             <Events />
-        </Grid>
+        </div>
     )
 }
 

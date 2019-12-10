@@ -1,16 +1,16 @@
-import React, { useContext } from 'react'
-import { Route, Redirect } from 'react-router-dom'
+import React, {useContext} from 'react'
+import {Route, Redirect} from 'react-router-dom'
 import AuthContext from '../../context/auth/authContext'
 
-const AdminRoute = ({ component: Component, ...rest }) => {
+const AdminRoute = ({component: Component, ...rest}) => {
     const authContext = useContext(AuthContext)
-    const { isAuthenticated, isAdmin, loading } = authContext
+    const {isAuthenticated, isAdmin, loading} = authContext
 
     return (
-        <Route { ...rest } render={props => isAuthenticated && isAdmin &&loading ? (
-          <Component {...props} />
+        <Route {...rest} render={props => !isAdmin && !loading ? (
+            <Redirect to="/" />
         ) : (
-          <Redirect to='/' />
+            <Component {...props} />
         )} />
     )
 }

@@ -55,6 +55,9 @@ router.post(
             const payload = {
                 user: {
                     id: user.id,
+                    firstName: user.firstName,
+                    lastName: user.lastName,
+                    email: user.email,
                     isAdmin, // user privilege default = false (not an admin)
                 },
             }

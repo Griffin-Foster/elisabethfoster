@@ -1,14 +1,15 @@
 import React, {useContext, useEffect} from 'react'
 import AuthContext from '../../context/auth/authContext'
-import Sidebar from '../layout/Sidebar'
+import Sidebar from '../layout/Sidebar/Sidebar'
 import MediaIcons from '../layout/MediaIcons'
 import Carousel from '../layout/Carousel'
 
 const About = () => {
     const authContext = useContext(AuthContext)
+    const {loadUser} = authContext
     useEffect(() => {
-      authContext.loadUser()
-      // eslint-disable-next-line
+        loadUser()
+        // eslint-disable-next-line
     }, [])
 
     return (
@@ -21,11 +22,19 @@ const About = () => {
                 <div className="body">
                     <span className="title">about</span>
                     <span className="subtitle">
-                      Raw, honest, blunt, vulgar and superfluous,
-                      <span className="book-title"> Raspberry Colored Scars </span>
-                      will take you through a journey of pain, discovery,
-                      loss and the absolute recovery that may help guide
-                      you and family members through a traumatic experience.
+                        Elisabeth Foster double-majored in government and sociology at the University of Texas,
+                        focusing the majority of her undergraduate studies around counterterrorism,
+                        criminal justice and advocacy. She founded Lasting Empowerment for Teen Success (LETS),
+                        an organization which is now a non-profit in the state of Texas with a mission to improve the experience of incarcerated youth in Austin.
+                        Elisabeth has worked at Alexander Dubose Jefferson & Townsend, where she collaborated on a Texas capital punishment case,
+                        as well as Lone Star Justice Alliance, where she researched and managed case files of juvenile lifers.
+                        As an Archer Fellow, she worked in the office of Representative Sheila Jackson Lee in Washington D.C..<br/><br/>
+
+                        Elisabeth started writing poetry as a way to express her feelings and experiences.
+                        The Me Too movement and women speaking out against sexual assault and sexual violence liberated
+                        her from her silence and made her feel confident that her message would be heard and respected.
+                        She was compelled to write her book,Raspberry Colored Scars, as a part of her own healing process.
+                        When Elisabeth is not writing poetry, she enjoys spending time outside and connecting with other creatives.
                     </span>
                 </div>
                 <div className="footer">
@@ -33,7 +42,7 @@ const About = () => {
                 </div>
             </div>
             <div className="section right">
-                <Carousel/>
+                <Carousel />
             </div>
         </div>
     )

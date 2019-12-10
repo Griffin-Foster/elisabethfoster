@@ -19,9 +19,9 @@ router.post(
     ],
     async (req, res) => {
         const errors = validationResult(req)
-        if (!errors.isEmpty()) return res.status(400).json({errors: errors.array()})
+        if (!errors.isEmpty()) return res.status(400).json({errors: errors.array(), msg: 'Please enter a password with at least 6 characters!'})
 
-        const {email, password} = req.body
+        const {firstName, lastName, email, password} = req.body
 
         try {
             // Check if email is taken
@@ -29,6 +29,8 @@ router.post(
             if (user) return res.status(400).json({msg: 'Error/Invalid: An account with that email already exists!'})
 
             user = new User({
+                firstName,
+                lastName,
                 email,
                 password,
             })
@@ -43,6 +45,9 @@ router.post(
             const payload = {
                 user: {
                     id: user.id,
+                    firstName: user.firstName,
+                    lastName: user.lastName,
+                    email: user.email,
                     isAdmin: false,
                 },
             }
@@ -60,7 +65,7 @@ router.post(
             )
         } catch (err) {
             console.error(err)
-            res.status(500).send('ERROR: Server Error!')
+            res.status(500).json({error: err, msg: 'ERROR: Server Error!'})
         }
     },
 )

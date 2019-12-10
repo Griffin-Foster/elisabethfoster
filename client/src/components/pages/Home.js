@@ -1,22 +1,17 @@
-import React, {useContext, useEffect} from 'react'
-import AuthContext from '../../context/auth/authContext'
+import React from 'react'
 import '../../styles/App.scss'
-import NavigationLinks from '../layout/NavigationLinks'
+// import NavigationLinks from '../layout/NavigationLinks'
 import NavigationButtons from '../layout/NavigationButtons'
 import MediaIcons from '../layout/MediaIcons'
 import Carousel from '../layout/Carousel'
+import Sidebar from '../layout/Sidebar/Sidebar'
 
 const Home = () => {
-    const authContext = useContext(AuthContext)
-    useEffect(() => {
-        authContext.loadUser()
-        // eslint-disable-next-line
-    }, [])
-
     return (
         <div className="panel home">
+            <Sidebar />
             <div className="section left">
-                <div className="view-toggle praise" data-dialog="praise"></div>
+                <div className="view-toggle praise" data-dialog="praise" />
                 <div className="header">
                     <span className="title lw-cs">elisabeth foster</span>
                 </div>
@@ -31,9 +26,9 @@ const Home = () => {
                     </div>
                 </div>
                 <div className="links">
-                    <div className="section general">
-                        <NavigationLinks />
-                    </div>
+                    {/*<div className="section general">*/}
+                    {/*    <NavigationLinks />*/}
+                    {/*</div>*/}
                     <div className="section buttons">
                         <NavigationButtons />
                     </div>

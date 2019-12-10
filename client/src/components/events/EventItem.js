@@ -15,7 +15,7 @@ import Avatar from '@material-ui/core/Avatar'
 import IconButton from '@material-ui/core/IconButton'
 import Typography from '@material-ui/core/Typography'
 import {red} from '@material-ui/core/colors'
-import Button from '@material-ui/core/Button'
+// import Button from '@material-ui/core/Button'
 import FavoriteIcon from '@material-ui/icons/Favorite'
 import ShareIcon from '@material-ui/icons/Share'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
@@ -25,9 +25,10 @@ const EventItem = ({event}) => {
     const eventContext = useContext(EventContext)
     const {deleteEvent, setCurrent, clearCurrent} = eventContext
 
-    const {_id, name, description, startDate, finishDate, location, image} = event
+    const {_id, name, description, startDate, finishDate, location, imageURL} = event
 
     const date = moment(startDate).format('MMM DDo, YYYY @ h:mm a')
+    const date2 = moment(finishDate).format('MMM DDo, YYY @ h:mm a')
 
     const onDelete = () => {
         deleteEvent(_id)
@@ -77,12 +78,11 @@ const EventItem = ({event}) => {
                     Delete
                 </button>
             </p>
-
             <Card className={classes.card}>
                 <CardHeader
                     avatar={
                         <Avatar aria-label="recipe" className={classes.avatar}>
-                            R
+                            RCS
                         </Avatar>
                     }
                     action={
@@ -91,13 +91,15 @@ const EventItem = ({event}) => {
                         </IconButton>
                     }
                     title={name}
-                    subheader={date}
+                    subheader={date + ' to ' + date2}
                 />
-                <CardMedia
-                    className={classes.media}
-                    image="/static/images/cards/paella.jpg"
-                    title="Paella dish"
-                />
+                {imageURL !== null && (
+                    <CardMedia
+                        className={classes.media}
+                        src={imageURL}
+                        title={name}
+                    />
+                )}
                 <CardContent>
                     <Typography variant="body1" color="textSecondary" component="p">{location}</Typography>
                     <Typography variant="body2" color="textSecondary" component="p">{description}</Typography>
@@ -122,12 +124,11 @@ const EventItem = ({event}) => {
                 </CardActions>
                 <Collapse in={expanded} timeout="auto" unmountOnExit>
                     <CardContent>
-                        <Typography paragraph>Method:</Typography>
-                        <Typography paragraph></Typography>
-                        <Typography paragraph>
-                        </Typography>
-                        <Typography paragraph></Typography>
-                        <Typography></Typography>
+                        {/*<Typography paragraph>Method:</Typography>*/}
+                        {/*<Typography paragraph></Typography>*/}
+                        {/*<Typography paragraph></Typography>*/}
+                        {/*<Typography paragraph></Typography>*/}
+                        {/*<Typography></Typography>*/}
                     </CardContent>
                 </Collapse>
             </Card>

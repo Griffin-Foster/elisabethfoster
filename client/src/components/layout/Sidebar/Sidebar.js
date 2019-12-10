@@ -1,7 +1,7 @@
 import React, {useContext, useState} from 'react'
 import {Link} from 'react-router-dom'
-import AuthContext from '../../context/auth/authContext'
-import EventContext from '../../context/event/eventContext'
+import AuthContext from '../../../context/auth/authContext'
+import EventContext from '../../../context/event/eventContext'
 import {
     SwipeableDrawer,
     List,
@@ -11,10 +11,10 @@ import {
     ListItemText,
     Button,
     Card,
-    CardActionArea,
+    // CardActionArea,
     CardContent,
     Typography,
-    CardActions,
+    // CardActions,
     IconButton,
 } from '@material-ui/core'
 import LinkIcon from '@material-ui/icons/Link'
@@ -25,7 +25,8 @@ import EventRoundedIcon from '@material-ui/icons/Event'
 import TextsmsRoundedIcon from '@material-ui/icons/TextsmsRounded'
 import MailRoundedIcon from '@material-ui/icons/Mail'
 import MenuIcon from '@material-ui/icons/Menu'
-import MediaIcons from './MediaIcons'
+import MediaIcons from '../MediaIcons'
+import {ExitToApp, VpnKey, LockOpen} from '@material-ui/icons'
 
 const Sidebar = () => {
     const authContext = useContext(AuthContext)
@@ -40,7 +41,6 @@ const Sidebar = () => {
     const handleRefresh = () => {
         getEvents()
     }
-
 
     const toggleDrawer = (open) => event => {
         if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift'))
@@ -61,13 +61,13 @@ const Sidebar = () => {
             <div className="logo">
                 <img src={'/img/book2.jpg'} alt="Raspberry Colored Scars" className="img" />
             </div>
-            <div className="banner">elisabeth foster</div>
+            <div className="banner">{user ? user.firstName : 'MENU'}</div>
         </div>
     )
 
     const authenticatedLinks = (
         <div className="section profile">
-            <div className="title">{user && user.name}</div>
+            <div className="title">{user && user.firstName}</div>
             <List className="list">
                 <Link to="/" className="link">
                     <ListItem button>
@@ -124,28 +124,51 @@ const Sidebar = () => {
                         <ListItemText primary="Contact" className="text" />
                     </ListItem>
                 </Link>
+                {isAuthenticated && (
+                    <Link to="/logout" className="link" onClick={onLogout}>
+                        <ListItem button className="listItem">
+                            <ListItemIcon><ExitToApp /></ListItemIcon>
+                            <ListItemText primary="Logout" className="text" />
+                        </ListItem>
+                    </Link>
+                )}
+                {!isAuthenticated && (
+                    <Link to="/register" className="link">
+                        <ListItem button className="listItem">
+                            <ListItemIcon><VpnKey /></ListItemIcon>
+                            <ListItemText primary="Register" className="text" />
+                        </ListItem>
+                    </Link>
+                )}
+                {!isAuthenticated && (
+                    <Link to="/login" className="link">
+                        <ListItem button className="listItem">
+                            <ListItemIcon><LockOpen /></ListItemIcon>
+                            <ListItemText primary="Login" className="text" />
+                        </ListItem>
+                    </Link>
+                )}
             </div>
         </div>
     )
 
-    const Event = props => {
-        const {name, description, link, linkText} = props.event
+    const Event = ({event: {name, description, link, linkText}}) => {
         return (
             <Card className="event card">
                 {/*<CardActionArea>*/}
-                    {/*<CardMedia*/}
-                    {/*    component="img"*/}
-                    {/*    alt="Book launch"*/}
-                    {/*    image="/img/book2.jpg"*/}
-                    {/*    title="Book launch"*/}
-                    {/*/>*/}
-                    <CardContent>
-                        <Typography gutterBottom variant="h5" component="h2">{name}</Typography>
-                        {/*<Typography variant="body1">{location}</Typography>*/}
-                        <Typography variant="body2" color="textSecondary" component="p">
-                            {description}
-                        </Typography>
-                    </CardContent>
+                {/*<CardMedia*/}
+                {/*    component="img"*/}
+                {/*    alt="Book launch"*/}
+                {/*    image="/img/book2.jpg"*/}
+                {/*    title="Book launch"*/}
+                {/*/>*/}
+                <CardContent>
+                    <Typography gutterBottom variant="h5" component="h2">{name}</Typography>
+                    {/*<Typography variant="body1">{location}</Typography>*/}
+                    <Typography variant="body2" color="textSecondary" component="p">
+                        {description}
+                    </Typography>
+                </CardContent>
                 {/*</CardActionArea>*/}
                 {link !== '' && <span className="divider"/>}
                 {link !== '' ?
@@ -178,7 +201,12 @@ const Sidebar = () => {
 
     const isAuthenticatedAdminLinks = (
         <div className="section">
-            <div className="title"></div>
+            <div className="title paper">
+                Admin
+                <IconButton classes={{root: 'ignore'}}>
+                    <LinkIcon className="ignore" />
+                </IconButton>
+            </div>
             <div className="list">
                 <Link to="/admin" className="link">
                     <ListItem button>
@@ -231,8 +259,8 @@ const Sidebar = () => {
                         <Divider />
                         {pageLinks}
                         <Divider />
-                        {isAuthenticated ? authenticatedLinks(<Divider />) : ''}
-                        {isAdmin ? isAuthenticatedAdminLinks(<Divider />) : ''}
+                        {isAuthenticated ? authenticatedLinks && <Divider /> : ''}
+                        {isAdmin ? isAuthenticatedAdminLinks && <Divider /> : ''}
                         {eventSection}
                         <Divider />
                     </div>

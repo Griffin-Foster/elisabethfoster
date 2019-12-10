@@ -1,5 +1,5 @@
 import React from 'react'
-import Sidebar from '../sidebar/Sidebar'
+import Index from '../layout/Sidebar/Sidebar'
 
 const items = [
   { name: 'home', label: 'Home' },
@@ -40,7 +40,7 @@ const items = [
 const Test = (props) => {
   return (
     <div>
-      <Sidebar items={items} />
+      <Index items={items} />
     </div>
   )
 }

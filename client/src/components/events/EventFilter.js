@@ -22,14 +22,16 @@ const EventFilter = () => {
     }
 
     return (
-        <form>
-            <input
-                ref={text}
-                type="text"
-                placeholder="Filter Events..."
-                onChange={onChange}
-            />
-        </form>
+        <div className="section header">
+            <form>
+                <input
+                    ref={text}
+                    type="text"
+                    placeholder="Filter Events..."
+                    onChange={onChange}
+                />
+            </form>
+        </div>
     )
 }
 

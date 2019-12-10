@@ -1,5 +1,5 @@
 import React, {useContext, useEffect, useState} from 'react'
-import Sidebar from '../layout/Sidebar'
+import Sidebar from '../layout/Sidebar/Sidebar'
 import AuthContext from '../../context/auth/authContext'
 import ContactContext from '../../context/contact/contactContext'
 import TextField from '@material-ui/core/TextField'
@@ -15,32 +15,32 @@ const Contact = () => {
     const contactContext = useContext(ContactContext)
     const {submitContactForm, clearFormFields, dismissAlerts, contactFormData, error, success} = contactContext
 
+    const [formData, setFormData] = useState({
+        firstName: '',
+        lastName:'',
+        email: '',
+        subject: '',
+        message: '',
+        owner: null,
+    })
+    const {firstName, lastName, email, subject, message} = formData
+
     useEffect(() => {
         loadUser()
-        if (contactFormData !== null) {
+        if (contactFormData !== null)
             setFormData(contactFormData)
-        } else {
+        else
             setFormData({
-                firstName: '',
-                lastName: '',
-                email: '',
+                firstName: isAuthenticated ? user.firstName : '',
+                lastName: isAuthenticated ? user.lastName : '',
+                email: isAuthenticated ? user.email : '',
                 subject: '',
                 message: '',
                 owner: isAuthenticated ? user.id : null,
             })
-        }
-        // eslint-disable-next-line
-    }, [contactContext, contactFormData])
 
-    const [formData, setFormData] = useState({
-        firstName: '',
-        lastName: '',
-        email: '',
-        subject: '',
-        message: '',
-        owner: isAuthenticated ? user.id : null,
-    })
-    const {firstName, lastName, email, subject, message} = formData
+        // eslint-disable-next-line
+    }, [user, contactContext, contactFormData])
 
     const onChange = e =>
         setFormData({...formData, [e.target.name]: e.target.value})
@@ -59,11 +59,11 @@ const Contact = () => {
     }
 
     return (
-        <div className="panel contact">
+        <div className="panel contact form">
             <Sidebar />
             <form className="contact" onSubmit={onSubmit}>
                 <div className="header">
-                    <div className="background"></div>
+                    <div className="background" />
                     <span className="title">Contact</span>
                 </div>
                 {error !== '' ?
