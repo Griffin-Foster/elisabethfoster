@@ -1,37 +1,38 @@
-// $(function() {
-//     const carouselEl = $('#carousel')
-//     const size = $('.carouselItem').length
-//     let index = 0
-//     let left = 0
-//     let leftProperty = left + '%'
-//
-//     setInterval(() => {
-//         if (index === size - 1) {
-//             index = 0
-//             left = 0
-//             return $(carouselEl).css({'left': leftProperty})
-//         }
-//
-//         index += 1
-//         left -= 100
-//         $(carouselEl).css({'left': leftProperty})
-//     }, 5000)
-// })
+$(document).ready(function() {
+    const carouselEl = $('#carousel')
+    const size = $('.carouselItem').length - 1
+    let index = 0
+    let left = 0
 
-// const carouselEl = document.getElementById('carousel')
-// const size = document.getElementsByClassName('carouselItem').length
+    setInterval(() => {
+        if (index === size) {
+            index = 0
+            left = 0
+            return $(carouselEl).css('left', `${left}%`)
+        }
+
+        index += 1
+        left = left - 100
+        $(carouselEl).css('left', `${left}%`)
+    }, 7500)
+})
+
+// const carouselEl = document.getElementsByClassName('carousel')
+// const size = document.getElementsByClassName('carouselItem').length - 1
 // let index = 0
 // let left = 0
-// let leftProperty = left + '%'
+// let leftProperty = `${left}%`
 //
 // setInterval(() => {
-//     if (index === size - 1) {
+//     if (index === size) {
 //         index = 0
 //         left = 0
 //         return carouselEl.style.left = leftProperty
 //     }
 //
 //     index += 1
-//     left -= 100
-//     carouselEl.style.left = leftProperty
+//     left = left - 100
+//     carouselEl.style.left = `${left}%`
 // }, 5000)
+
+
