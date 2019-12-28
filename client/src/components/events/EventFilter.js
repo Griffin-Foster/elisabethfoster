@@ -1,36 +1,39 @@
-import React, {useContext, useRef, useEffect} from 'react'
+import React, {useContext, useState, useEffect} from 'react'
 import EventContext from '../../context/event/eventContext'
+import {TextField} from '@material-ui/core'
 
 const EventFilter = () => {
     const eventContext = useContext(EventContext)
-    const text = useRef('')
+    const {filterEvents, clearFilter} = eventContext
 
-    const {filterEvents, clearFilter, filtered} = eventContext
-
-    useEffect(() => {
-        if (filtered === null) {
-            text.current.value = ''
-        }
-    })
+    const [text, setText] = useState('')
 
     const onChange = e => {
-        if (text.current.value !== '') {
-            filterEvents(e.target.value)
-        } else {
+        const textValue = e.target.value
+        setText(textValue)
+        if (textValue !== '')
+            filterEvents(textValue.toLowerCase())
+        else
             clearFilter()
-        }
     }
+
+    const onSubmit = e => e.preventDefault()
 
     return (
         <div className="section header">
-            <form>
-                <input
-                    ref={text}
-                    type="text"
-                    placeholder="Filter Events..."
-                    onChange={onChange}
-                />
-            </form>
+            {/*<div className="title"><h2>Events</h2></div>*/}
+            <div className="filter">
+                <form onSubmit={onSubmit}>
+                    <TextField
+                        value={text}
+                        type="text"
+                        placeholder="Search..."
+                        variant="outlined"
+                        onChange={onChange}
+                        onKeyDown={onChange}
+                    />
+                </form>
+            </div>
         </div>
     )
 }

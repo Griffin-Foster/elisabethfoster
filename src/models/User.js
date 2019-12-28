@@ -42,14 +42,43 @@ const UserSchema = new Schema(
                 ref: 'Post',
             }],
         },
-        isAdmin: {
-            type: Boolean,
-            default: false,
+        privileges: {
+            member: {
+                type: Boolean,
+                default: true,
+                required: true,
+            },
+            events: {
+                type: Boolean,
+                default: true,
+                required: true,
+            },
+            eventsAdmin: {
+                type: Boolean,
+                default: false,
+                required: true,
+            },
+            blog: {
+                type: Boolean,
+                default: false,
+                required: true,
+            },
+            blogAdmin: {
+                type: Boolean,
+                default: false,
+                required: true,
+            },
+            admin: {
+                type: Boolean,
+                default: false,
+                required: true,
+            },
         },
     },
-    { timestamps: true },
+    {timestamps: true},
 )
 
 UserSchema.index({createdAt: 1, updatedAt: 1})
+const User = mongoose.model('User', UserSchema, 'users')
 
-module.exports = mongoose.model('User', UserSchema, 'users')
+module.exports = User

@@ -14,11 +14,11 @@ export default (state, action) => {
         case USER_LOADED:
             return {
                 ...state,
-                isAuthenticated: true,
-                isAdmin: action.payload.isAdmin,
                 loading: false,
+                isAuth: true,
                 user: action.payload,
-                error: null,
+                privileges: action.payload.privileges,
+                errors: null,
             }
         case REGISTER_SUCCESS:
         case LOGIN_SUCCESS:
@@ -26,53 +26,57 @@ export default (state, action) => {
             return {
                 ...state,
                 ...action.payload,
-                isAuthenticated: true,
-                isAdmin: false,
+                isAuth: true,
                 loading: false,
-                error: null,
+                errors: null,
             }
         case REGISTER_FAIL:
         case LOGIN_FAIL:
+        case AUTH_ERROR:
             localStorage.removeItem('token')
             return {
                 ...state,
                 token: null,
-                isAuthenticated: false,
-                isAdmin: false,
                 loading: false,
+                isAuth: false,
                 user: null,
-                error: action.payload.msg,
-            }
-        case AUTH_ERROR:
-            return {
-                ...state,
-                token: null,
-                isAuthenticated: false,
-                isAdmin: false,
-                loading: false,
-                user: null,
-                error: null,
+                privileges: {
+                    member: false,
+                    events: true,
+                    eventsAdmin: false,
+                    blog: true,
+                    admin: false,
+                },
+                errors: {
+                    auth: action.payload,
+                },
             }
         case LOGOUT:
             localStorage.removeItem('token')
             return {
                 ...state,
                 token: null,
-                isAuthenticated: false,
-                isAdmin: false,
                 loading: false,
+                isAuth: false,
                 user: null,
-                error: null,
+                privileges: {
+                    member: false,
+                    events: true,
+                    eventsAdmin: false,
+                    blog: true,
+                    admin: false,
+                },
+                errors: null,
             }
         case CLEAR_ERRORS:
             return {
                 ...state,
-                error: null,
+                errors: null,
             }
         default:
             return {
                 ...state,
-                error: null,
+                errors: null,
             }
     }
 }

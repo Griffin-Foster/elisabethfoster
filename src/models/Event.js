@@ -1,6 +1,5 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
-const moment = require('moment')
 
 const EventSchema = new Schema(
     {
@@ -12,37 +11,42 @@ const EventSchema = new Schema(
         description: {
             type: String,
             required: true,
-            index: true,
         },
         startDate: {
-            type: String,
+            type: Date,
             required: true,
         },
         finishDate: {
-            type: String,
+            type: Date,
         },
         location: {
             type: String,
             required: true,
         },
-        imageURL: {
+        image: {
             type: String,
         },
-        image: {
-            type: Buffer,
-            contentType: String,
-        },
-        link: String,
-        linkText: String,
         meta: {
             usersViewed: [{ // Track when people view the event
                 type: Schema.Types.ObjectId,
                 ref: 'User',
             }],
+            links: [{ // Array of links (buyLink)
+                name: {
+                    type: String,
+                    required: true,
+                },
+                url: {
+                    type: String,
+                    required: true,
+                },
+            }],
         },
-    }, {timestamps: true},
+    },
+    {timestamps: true},
 )
 
-EventSchema.index({dateCreated: 1})
+EventSchema.index({startDate: 1})
+const Event = mongoose.model('Event', EventSchema)
 
-module.exports = mongoose.model('Event', EventSchema)
+module.exports = Event

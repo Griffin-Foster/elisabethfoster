@@ -1,4 +1,5 @@
-const router = require('express').Router()
+const express = require('express')
+const router = express.Router()
 const auth = require('../middleware/auth')
 const {check, validationResult} = require('express-validator')
 const fs = require('fs')
@@ -93,10 +94,12 @@ router.put('/:id', auth, async (req, res) => {
     try {
         let post = await Post.findById(req.params.id)
 
-        if (!post) return res.status(404).json({msg: 'No posts could be found with that ID!'})
+        if (!post)
+            return res.status(404).json({msg: 'No posts could be found with that ID!'})
 
         // Check if user owns post
-        if (post.author.toString() !== req.user.id) return res.status(401).json({msg: 'Error: You are not authorized to edit this post!'})
+        if (post.author.toString() !== req.user.id)
+            return res.status(401).json({msg: 'Error: You are not authorized to edit this post!'})
 
         post = await Post.findByIdAndUpdate(req.params.id,
             {$set: postFields},

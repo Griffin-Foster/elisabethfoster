@@ -42,13 +42,22 @@ router.post(
 
             await user.save()
 
+            user.privileges = {
+                member: true,
+                events: true,
+                eventsAdmin: false,
+                blog: true,
+                blogAdmin: false,
+                admin: false,
+            }
+
             const payload = {
                 user: {
                     id: user.id,
                     firstName: user.firstName,
                     lastName: user.lastName,
                     email: user.email,
-                    isAdmin: false,
+                    privileges: user.privileges, // user privileges object
                 },
             }
 
@@ -65,7 +74,7 @@ router.post(
             )
         } catch (err) {
             console.error(err)
-            res.status(500).json({error: err, msg: 'ERROR: Server Error!'})
+            res.status(500).json({error: err, msg: 'Error/Invalid: Registration failure! Please try again.'})
         }
     },
 )

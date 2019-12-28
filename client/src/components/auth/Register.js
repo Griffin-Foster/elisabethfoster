@@ -12,7 +12,7 @@ import VisibilityOff from '@material-ui/icons/VisibilityOff'
 
 const Register = (props) => {
     const authContext = useContext(AuthContext)
-    const {register, error, isAuthenticated} = authContext
+    const {register, errors, isAuth} = authContext
 
     const [formData, setFormData] = useState({
         firstName: '',
@@ -29,13 +29,13 @@ const Register = (props) => {
     const {firstName, lastName, email, password, password2, showPassword, showPassword2, formError, passwordError, formSuccess} = formData
 
     useEffect(() => {
-        if (isAuthenticated)
+        if (isAuth)
             props.history.push('/')
 
-        if (error !== null)
-            setFormData({...formData, formError: error})
+        if (errors && errors.auth !== null)
+            setFormData({...formData, formError: errors.auth})
         // eslint-disable-next-line
-    }, [error, isAuthenticated, props.history])
+    }, [errors, isAuth, props.history])
 
     useEffect(() => {
         if (password !== '' && password2 !== '' && password !== password2)

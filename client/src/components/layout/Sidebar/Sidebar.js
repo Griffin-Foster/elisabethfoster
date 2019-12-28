@@ -30,7 +30,8 @@ import {ExitToApp, VpnKey, LockOpen} from '@material-ui/icons'
 
 const Sidebar = () => {
     const authContext = useContext(AuthContext)
-    const {isAuthenticated, isAdmin, logout, user} = authContext
+    const {privileges, isAuth, logout, user} = authContext
+    const isAdmin = privileges.admin
     const eventContext = useContext(EventContext)
     const {events, getEvents, loading, error} = eventContext
 
@@ -38,9 +39,7 @@ const Sidebar = () => {
         showSidebar: false,
     })
 
-    const handleRefresh = () => {
-        getEvents()
-    }
+    const handleRefresh = () => getEvents()
 
     const toggleDrawer = (open) => event => {
         if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift'))
@@ -52,16 +51,14 @@ const Sidebar = () => {
         setState({showSidebar: open})
     }
 
-    const onLogout = () => {
-        logout()
-    }
+    const onLogout = () => logout()
 
     const headerSection = (
         <div className="section header">
             <div className="logo">
                 <img src={'/img/book2.jpg'} alt="Raspberry Colored Scars" className="img" />
             </div>
-            <div className="banner">{user ? user.firstName : 'MENU'}</div>
+            <div className="banner">{user ? user.firstName : ''}</div>
         </div>
     )
 
@@ -124,7 +121,7 @@ const Sidebar = () => {
                         <ListItemText primary="Contact" className="text" />
                     </ListItem>
                 </Link>
-                {isAuthenticated && (
+                {isAuth && (
                     <Link to="/logout" className="link" onClick={onLogout}>
                         <ListItem button className="listItem">
                             <ListItemIcon><ExitToApp /></ListItemIcon>
@@ -132,7 +129,7 @@ const Sidebar = () => {
                         </ListItem>
                     </Link>
                 )}
-                {!isAuthenticated && (
+                {!isAuth && (
                     <Link to="/register" className="link">
                         <ListItem button className="listItem">
                             <ListItemIcon><VpnKey /></ListItemIcon>
@@ -140,7 +137,7 @@ const Sidebar = () => {
                         </ListItem>
                     </Link>
                 )}
-                {!isAuthenticated && (
+                {!isAuth && (
                     <Link to="/login" className="link">
                         <ListItem button className="listItem">
                             <ListItemIcon><LockOpen /></ListItemIcon>
@@ -152,7 +149,7 @@ const Sidebar = () => {
         </div>
     )
 
-    const Event = ({event: {name, description, link, linkText}}) => {
+    const Event = ({event: {name, description}}) => {
         return (
             <Card className="event card">
                 {/*<CardActionArea>*/}
@@ -164,18 +161,17 @@ const Sidebar = () => {
                 {/*/>*/}
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="h2">{name}</Typography>
-                    {/*<Typography variant="body1">{location}</Typography>*/}
                     <Typography variant="body2" color="textSecondary" component="p">
                         {description}
                     </Typography>
                 </CardContent>
                 {/*</CardActionArea>*/}
-                {link !== '' && <span className="divider"/>}
-                {link !== '' ?
-                    <Button component="a" className="link" href={link} target="_blank" rel="noopener noreferrer">
-                        {linkText}
-                    </Button>
-                    : ''}
+                <span className="divider"/>
+                {/*{link !== '' ?*/}
+                {/*    <Button component="a" className="link" href={link} target="_blank" rel="noopener noreferrer">*/}
+                {/*        {linkText}*/}
+                {/*    </Button>*/}
+                {/*    : ''}*/}
             </Card>
         )
     }
@@ -191,7 +187,7 @@ const Sidebar = () => {
             {/*<ButtonGroup className="switcher" aria-label="small outlined button group">*/}
             {/*    <Button classes={{label: 'ignore'}} value={'recent'} onClick={handleRefresh}>Sort</Button>*/}
             {/*</ButtonGroup>*/}
-            {events !== null && !loading
+            {events.length !== 0 && !loading
                 ? events.map((event) =>
                     <Event key={event.name} event={event} />,
                 ) : error
@@ -199,7 +195,7 @@ const Sidebar = () => {
         </div>
     )
 
-    const isAuthenticatedAdminLinks = (
+    const adminLinks = (
         <div className="section">
             <div className="title paper">
                 Admin
@@ -245,7 +241,7 @@ const Sidebar = () => {
                 open={state.showSidebar}
                 onClose={toggleDrawer(false)}
                 onOpen={toggleDrawer(true)}
-                className="sidebar"
+                className={"sidebar"}
             >
                 <div
                     className="column"
@@ -253,14 +249,14 @@ const Sidebar = () => {
                     onClick={toggleDrawer(false)}
                     onKeyDown={toggleDrawer(false)}
                 >
-                    {/*{isAuthenticated ? headerSection : ''}*/}
+                    {/*{isAuth ? headerSection : ''}*/}
                     {headerSection}
                     <div className="body mini-scrollbar round-scrollbar">
                         <Divider />
                         {pageLinks}
                         <Divider />
-                        {isAuthenticated ? authenticatedLinks && <Divider /> : ''}
-                        {isAdmin ? isAuthenticatedAdminLinks && <Divider /> : ''}
+                        {isAuth ? authenticatedLinks && <Divider /> : ''}
+                        {isAdmin ? adminLinks && <Divider /> : ''}
                         {eventSection}
                         <Divider />
                     </div>

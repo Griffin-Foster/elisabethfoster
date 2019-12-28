@@ -13,7 +13,7 @@ import {LockOpen} from '@material-ui/icons'
 
 const Login = (props) => {
     const authContext = useContext(AuthContext)
-    const {login, error, isAuthenticated, clearErrors} = authContext
+    const {login, errors, isAuth, clearErrors} = authContext
 
     const [formData, setFormData] = useState({
         email: '',
@@ -24,27 +24,24 @@ const Login = (props) => {
     const {email, password, showPassword, formError} = formData
 
     useEffect(() => {
-        if (isAuthenticated)
+        if (isAuth)
             props.history.push('/')
         setFormData({...formData, formError: ''})
         clearErrors()
-    }, [isAuthenticated, props.history])
+    }, [isAuth, props.history])
 
     useEffect(() => {
-        if (error !== null)
-            setFormData({...formData, formError: error})
+        if (errors !== null && errors.auth)
+            setFormData({...formData, formError: errors.auth})
         // eslint-disable-next-line
-    }, [error])
+    }, [errors])
 
     const togglePassword = () => setFormData({...formData, showPassword: !showPassword})
     const handleMouseDownPassword = e => e.preventDefault()
 
-    const dismissAlerts = () => {
-        setFormData({...formData, formError: ''})
-    }
+    const dismissAlerts = () => setFormData({...formData, formError: ''})
 
-    const onChange = e =>
-        setFormData({...formData, [e.target.name]: e.target.value})
+    const onChange = e => setFormData({...formData, [e.target.name]: e.target.value})
 
     const onSubmit = e => {
         e.preventDefault()

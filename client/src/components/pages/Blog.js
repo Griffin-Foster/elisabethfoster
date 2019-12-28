@@ -5,7 +5,7 @@ import Sidebar from '../layout/Sidebar/Sidebar'
 const Blog = () => {
     const authContext = useContext(AuthContext)
     const {loadUser} = authContext
-    // , isAuthenticated, isAdmin, user
+    // user, isAuth, privileges
 
     useEffect(() => {
         loadUser()

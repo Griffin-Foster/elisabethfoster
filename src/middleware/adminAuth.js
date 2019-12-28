@@ -16,8 +16,7 @@ module.exports = function(req, res, next) {
 
     // throw an error if the user is not an admin (!isAdmin)
     const { isAdmin } = req.user
-    if (!isAdmin) throw 'Error/Invalid: You are not an authorized admin!'
-    next()
+    if (isAdmin) next()
   } catch (err) {
     res.status(401).json({ msg: err })
   }

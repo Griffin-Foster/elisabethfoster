@@ -17,7 +17,7 @@ import {
 
 const EventState = (props) => {
     const initialState = {
-        events: null,
+        events: [],
         current: null,
         filtered: null,
         error: null,

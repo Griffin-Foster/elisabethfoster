@@ -21,7 +21,7 @@ router.get('/', auth, async (req, res) => {
 })
 
 // @route     POST api/auth
-// @desc      Auth user & get/set token (LOGIN)
+// @desc      Login && Auth user & get/set token
 // @access    Public
 router.post(
     '/',
@@ -50,15 +50,13 @@ router.post(
             const isMatch = await bcrypt.compare(password, user.password)
             if (!isMatch) return res.status(400).json({msg: 'Error/Invalid: Invalid credentials!'})
 
-            const isAdmin = (!!user.isAdmin) // if DB user isAdmin (true), else if DB user !isAdmin (false)
-
             const payload = {
                 user: {
                     id: user.id,
                     firstName: user.firstName,
                     lastName: user.lastName,
                     email: user.email,
-                    isAdmin, // user privilege default = false (not an admin)
+                    privileges: user.privileges, // user privileges object
                 },
             }
 
@@ -73,14 +71,13 @@ router.post(
                 (err, token) => {
                     // Handle error
                     if (err) throw err
-
                     // Send token response
                     res.json({token})
                 },
             )
         } catch (err) {
-            console.error(err)
-            res.status(500).send('ERROR: Server Error!')
+            console.error(err.message)
+            res.status(500).send('ERROR: Server Error!').json({msg: 'ERROR: Server Error!'})
         }
     },
 )

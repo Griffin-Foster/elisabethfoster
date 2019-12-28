@@ -44,7 +44,7 @@ export default (state, action) => {
         case CLEAR_EVENTS:
             return {
                 ...state,
-                events: null,
+                events: [],
                 filtered: null,
                 error: null,
                 current: null,
@@ -63,8 +63,9 @@ export default (state, action) => {
             return {
                 ...state,
                 filtered: state.events.filter(event => {
-                    const regex = new RegExp(`${action.payload}`, 'gi')
-                    return event.name.match(regex) || event.description.match(regex)
+                    // const regex = new RegExp(`${action.payload}`, 'gi')
+                    // return event.name.match(regex) || event.description.match(regex)
+                    return Object.values(event).toString().toLowerCase().includes(action.payload)
                 }),
             }
         case CLEAR_FILTER_EVENT:

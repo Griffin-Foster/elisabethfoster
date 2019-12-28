@@ -8,12 +8,51 @@ html, body {
   padding    : 0;
   overflow-x : hidden;
 }
+h1, h2, h3, h4, h5, h6 {margin : 0;}
+h1 {
+  font     : {
+    family : 'Gotham Black Regular';
+    size   : 32px;
+  }
+}
+h2 {
+  font     : {
+    family : 'Gotham Black Regular';
+    size   : 28px;
+  }
+}
+h3 {
+  font     : {
+    family : 'Gotham Black Regular';
+    size   : 24px;
+    weight : bolder;
+  }
+}
+h4 {
+  font     : {
+    family : 'Gotham Light Regular';
+    size   : 20px;
+    weight : 700;
+  }
+}
+h5 {
+  font     : {
+    family : 'Gotham Light Regular';
+    size   : 16px;
+  }
+}
+h6 {
+  font     : {
+    family : 'Gotham Light Regular';
+    size   : 12px;
+  }
+}
 
 #root.page {
-  display    : flex;
-  width      : 100%;
-  height     : auto;
-  min-height : 100%;
+  display     : flex;
+  align-items : stretch;
+  width       : 100%;
+  height      : auto;
 }
 
 .lw-cs {text-transform : lowercase;}
@@ -455,40 +494,153 @@ html, body {
 
 // EVENTS //
 .panel.events {
-  display         : flex;
-  flex-direction  : column;
-  justify-self    : center;
-  justify-content : center;
-  align-items     : center;
-  width           : 100%;
-  height          : 100%;
+  display        : flex;
+  flex           : 1 0;
+  flex-direction : column;
+  align-items    : center;
+  width          : 100%;
 
-  &.section.header {
-    display: flex;
-    flex: 1 0;
-    align-items: center;
-    height: 15%;
-    padding: 25px 0;
-  }
+  & .sidebar-toggle svg {fill : $mainWhite;}
 
-  .event-filter {
-    display         : flex;
-    flex            : 1;
-    justify-content : space-around;
-    align-items     : center;
-    padding         : 35px 0;
-  }
+  > .section {
+    display : flex;
+    width   : 100%;
 
-  .card-container {
-    display         : flex;
-    justify-content : space-around;
-    align-items     : center;
-    flex-wrap       : wrap;
-  }
+    &.header {
+      justify-content : center;
+      align-items     : center;
+      width           : 100%;
+      height          : 72px;
+      //padding         : 25px 0;
+      z-index         : 10;
 
-  .event.card {
-    width  : 300px;
-    margin : 10px 25px;
+      > .title {
+        text-transform : uppercase;
+      }
+
+      > .filter {
+        display         : flex;
+        justify-self    : flex-end;
+        justify-content : center;
+        align-items     : center;
+        width           : 100%;
+        height          : 72px;
+        background      : $mainRasp;
+        box-shadow      : 0 4px 16px 0 rgba($mainBlack, 0.5);
+        position        : fixed;
+        top             : 0;
+
+        & input {
+          background    : $mainWhite;
+          border-radius : $softBorderRadius;
+          box-shadow    : $softShadow;
+        }
+
+        & .Mui-focused fieldset {
+          border-color : $softGray;
+        }
+      }
+    }
+
+    &.body {
+      flex            : 1 0;
+      flex-wrap       : wrap;
+      justify-content : center;
+      height          : 100%;
+
+      > .pane {
+        display         : flex;
+        flex            : 1 0;
+        justify-content : center;
+        align-items     : center;
+        min-width       : 750px;
+
+        &.events {
+          flex            : 1 0;
+          flex-direction  : column;
+          justify-content : flex-start;
+          padding         : 25px 0 50px 0;
+          margin          : 0 10px;
+
+          & .event.paper {
+            display            : flex;
+            //flex               : 1 0;
+            flex-direction     : column;
+            align-items        : center;
+            width              : 85%;
+            max-width          : 85vw;
+            padding            : 20px;
+            margin             : 10px 0;
+            box-shadow         : $softShadow;
+            -webkit-box-shadow : $softShadow;
+
+            > .body {
+              display         : flex;
+              flex            : 1 0;
+              justify-content : space-around;
+              align-items     : center;
+              flex-wrap       : wrap;
+              width           : 100%;
+
+              > .image {
+                display         : flex;
+                justify-content : center;
+                align-items     : center;
+                //flex            : 1 0;
+                width           : 375px;
+                height          : 375px;
+
+                img {
+                  width           : 100%;
+                  height          : 100%;
+                  border-radius   : $softBorderRadius;
+                  border          : 5px solid $mainRasp;
+                  object-position : center;
+                  object-fit      : cover;
+                }
+              }
+
+              > .content {
+                display        : flex;
+                flex           : 1 0;
+                flex-direction : column;
+                //justify-content : space-between;
+                align-self     : stretch;
+                margin         : 0 20px;
+
+                > .text {
+                  display        : flex;
+                  flex           : 1 0;
+                  flex-direction : column;
+
+                  & .name {
+                    margin : 10px 0;
+                  }
+                  & .date {
+                    margin : 0 0 15px 0;
+                  }
+                  & .location {
+                    margin : 0 0 15px 0;
+                  }
+                  & .description {
+                    font     : {
+                      family : 'Gotham Light Regular';
+                      size   : 16px;
+                    }
+                  }
+                }
+
+                > .buttons {
+                  display         : flex;
+                  justify-content : flex-end;
+                }
+
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }
 // END EVENTS //
@@ -522,6 +674,23 @@ html, body {
 
 // Form Panel //
 .panel.form {
+  &.events {
+    &.form {
+      > form {
+        width : 90%;
+        & .row.toggle {
+          justify-content : flex-start;
+          align-items     : center;
+
+          & .checkbox {
+            height      : auto;
+            margin-left : 10px;
+          }
+        }
+
+      }
+    }
+  }
   & form {
     display         : flex;
     flex-flow       : column wrap;
@@ -707,8 +876,8 @@ html, body {
     justify-content    : center;
     align-items        : center;
     position           : fixed;
-    left               : 10px;
-    top                : 10px;
+    left               : 15px;
+    top                : 15px;
     transition         : all .3s ease-out;
     -webkit-transition : all .3s ease-out;
     -moz-transition    : all .3s ease-out;
@@ -811,7 +980,7 @@ html, body {
             size   : 20px;
           }
           cursor          : default;
-          border-radius   : 4px;
+          border-radius   : $softBorderRadius;
           box-shadow      : $paperBoxShadow;
         }
 
@@ -945,7 +1114,7 @@ html, body {
 // MEDIA ICONS //
 .icons {
   display         : flex;
-  flex            : 1;
+  flex            : 1 0;
   justify-content : space-around;
   align-items     : center;
   width           : 100%;
@@ -1060,6 +1229,8 @@ html, body {
     & .sidebar-toggle {
       background : $mainWhite;
       box-shadow : 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 5px 8px 0px rgba(0, 0, 0, 0.14), 0px 1px 14px 0px rgba(0, 0, 0, 0.12);
+
+      svg {fill : $mainDarkGray !important;}
     }
   }
 
@@ -1085,16 +1256,15 @@ html, body {
         }
         // Section Left (Bottom) //
         &.left {
-          //justify-content : space-around;
           order : 2;
-
           > .body {
-            //justify-content: flex-start;
             height : auto;
           }
-
-          & .links {
+          > .links {
             width : 75%;
+          }
+          > .footer {
+            width : 50%;
           }
         }
       }
@@ -1117,7 +1287,20 @@ html, body {
 }
 
 // Medium devices (landscape tablets, >= 768px) //
-@media screen and (min-width : 768px) {}
+@media screen and (min-width : 768px) {
+  .panel {
+    &.home,
+    &.about {
+      > .section {
+        &.left {
+          > .footer {
+            width : 50%;
+          }
+        }
+      }
+    }
+  }
+}
 
 // Large devices (laptops/desktops, >= 992px) //
 @media screen and (min-width : 992px) {}

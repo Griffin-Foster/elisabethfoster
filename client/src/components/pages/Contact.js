@@ -11,7 +11,7 @@ import CloseIcon from '@material-ui/icons/Close'
 
 const Contact = () => {
     const authContext = useContext(AuthContext)
-    const {loadUser, isAuthenticated, user} = authContext
+    const {loadUser, isAuth, user} = authContext
     const contactContext = useContext(ContactContext)
     const {submitContactForm, clearFormFields, dismissAlerts, contactFormData, error, success} = contactContext
 
@@ -31,12 +31,12 @@ const Contact = () => {
             setFormData(contactFormData)
         else
             setFormData({
-                firstName: isAuthenticated ? user.firstName : '',
-                lastName: isAuthenticated ? user.lastName : '',
-                email: isAuthenticated ? user.email : '',
+                firstName: isAuth ? user.firstName : '',
+                lastName: isAuth ? user.lastName : '',
+                email: isAuth ? user.email : '',
                 subject: '',
                 message: '',
-                owner: isAuthenticated ? user.id : null,
+                owner: isAuth ? user.id : null,
             })
 
         // eslint-disable-next-line
