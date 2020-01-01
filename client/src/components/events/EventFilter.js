@@ -1,4 +1,4 @@
-import React, {useContext, useState, useEffect} from 'react'
+import React, {useContext, useState} from 'react'
 import EventContext from '../../context/event/eventContext'
 import {TextField} from '@material-ui/core'
 

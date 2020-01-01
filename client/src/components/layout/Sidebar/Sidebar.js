@@ -56,7 +56,7 @@ const Sidebar = () => {
     const headerSection = (
         <div className="section header">
             <div className="logo">
-                <img src={'/img/book2.jpg'} alt="Raspberry Colored Scars" className="img" />
+                <img src="/img/book2.jpg" alt="Raspberry Colored Scars" className="img" />
             </div>
             <div className="banner">{user ? user.firstName : ''}</div>
         </div>
@@ -84,13 +84,19 @@ const Sidebar = () => {
 
     const pageLinks = (
         <div className="section links">
-            <div className="title paper">
+            <div className="title paper ignore">
                 Pages
                 <IconButton classes={{root: 'ignore'}}>
                     <LinkIcon className="ignore" />
                 </IconButton>
             </div>
             <div className="list card">
+                <Link to="/" className="link thrive">
+                    <ListItem button className="listItem">
+                        <ListItemIcon><svg className="hashtag" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" strokeWidth="3" strokeLinecap="square" strokeLinejoin="round"><line x1="4" y1="9" x2="20" y2="9"></line><line x1="4" y1="15" x2="20" y2="15"></line><line x1="10" y1="3" x2="8" y2="21"></line><line x1="16" y1="3" x2="14" y2="21"></line></svg></ListItemIcon>
+                        <ListItemText primary="THRIVE" className="text" />
+                    </ListItem>
+                </Link>
                 <Link to="/" className="link">
                     <ListItem button className="listItem">
                         <ListItemIcon><HomeRoundedIcon /></ListItemIcon>
@@ -178,7 +184,7 @@ const Sidebar = () => {
 
     const eventSection = (
         <div className="section event">
-            <div className="title paper">Events
+            <div className="title paper ignore">Events
                 <IconButton classes={{root: 'ignore'}} onClick={handleRefresh}>
                     <RefreshIcon className={'ignore ' + (loading ? 'loading' : '')}
                                  classes={{root: loading && 'loading'}} />

@@ -15,7 +15,7 @@ const About = () => {
     return (
         <div className="panel about">
             <Sidebar />
-            <div className="section left">
+            <div className="section left mini-scrollbar">
                 <div className="header">
                     <span className="title lw-cs">elisabeth foster</span>
                 </div>
@@ -42,7 +42,7 @@ const About = () => {
                 </div>
             </div>
             <div className="section right">
-                <Carousel />
+                <Carousel showOne show="back2" />
             </div>
         </div>
     )

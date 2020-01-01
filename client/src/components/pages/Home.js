@@ -38,7 +38,7 @@ const Home = () => {
                 </div>
             </div>
             <div className="section right">
-                <Carousel />
+                <Carousel showAll />
             </div>
             <div className="section praise">
             </div>

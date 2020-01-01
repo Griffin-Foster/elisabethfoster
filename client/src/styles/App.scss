@@ -374,20 +374,22 @@ h6 {
   align-items     : center;
   width           : 100%;
   height          : 100vh;
+  overflow        : hidden;
 
   > .section {
     display : flex;
     flex    : 1;
     width   : 50%;
-    height  : 100%;
+    height  : 100vh;
 
     // Left Section //
     &.left {
       flex-direction  : column;
-      justify-content : space-around;
+      justify-content : flex-start;
       align-items     : center;
       height          : 100%;
       position        : relative;
+      overflow        : auto;
 
       & .header {
         display         : flex;
@@ -428,7 +430,7 @@ h6 {
         justify-content : center;
         align-items     : center;
         width           : 70%;
-        height          : 40%;
+        height          : auto;
         padding         : 40px 0;
 
         & .title {
@@ -444,7 +446,7 @@ h6 {
 
         & .subtitle {
           font-family : 'Gotham Light Regular', sans-serif;
-          font-size   : 20px;
+          font-size   : 1.2rem;
           text-align  : center;
 
           & .book-title {
@@ -467,12 +469,10 @@ h6 {
 
     // Right Section //
     &.right {
-      display         : flex;
-      flex            : 1;
       justify-content : center;
       align-items     : center;
       position        : relative;
-      height          : 100%;
+      height          : 100vh;
       overflow        : hidden;
 
       & .mySlides {
@@ -701,9 +701,10 @@ h6 {
     height          : auto;
     padding         : 25px;
     border-radius   : 15px;
-    box-shadow      : 0 3px 1px -1px rgba($mainBlack, 0.25),
-    1px 1px 1px 0 rgba($mainBlack, 0.15),
-    -3px 1px 3px 0 rgba($mainBlack, 0.15);
+    //box-shadow      : 0 3px 1px -1px rgba($mainBlack, 0.25),
+    //1px 1px 1px 0 rgba($mainBlack, 0.15),
+    //-3px 1px 3px 0 rgba($mainBlack, 0.15);
+    box-shadow      : $softShadow;
     font-family     : 'Gotham Light Regular', sans-serif;
 
     & .header {
@@ -750,10 +751,11 @@ h6 {
       }
 
       & .formField {
-        flex      : 1;
-        min-width : 200px;
-        margin    : 10px;
-        color     : $mainBlack;
+        flex          : 1;
+        min-width     : 200px;
+        margin        : 10px;
+        color         : $mainBlack;
+        border-radius : $softBorderRadius;
 
         &.error {
           & label {
@@ -794,10 +796,17 @@ h6 {
       }
 
       & .formSubmit {
-        font-family : 'Gotham Bold', sans-serif;
-        color       : $mainWhite;
-        background  : $mainRasp;
-        margin      : 25px 0 10px 0;
+        font-family        : 'Gotham Bold', sans-serif;
+        color              : $mainWhite;
+        background         : $mainRasp;
+        margin             : 25px 0 10px 0;
+        box-shadow         : $softUIShadow;
+        -webkit-box-shadow : $softUIShadow;
+
+        &:hover {
+          box-shadow         : none;
+          -webkit-box-shadow : none;
+        }
 
         & .MuiButton-endIcon {}
       }
@@ -968,20 +977,21 @@ h6 {
         padding        : 15px 0;
 
         > .title {
-          display         : flex;
-          flex            : 1 0;
-          justify-content : space-around;
-          align-self      : center;
-          align-items     : center;
-          width           : 90%;
-          padding         : 10px 0;
+          display            : flex;
+          flex               : 1 0;
+          justify-content    : space-around;
+          align-self         : center;
+          align-items        : center;
+          width              : 90%;
+          padding            : 10px 0;
           font     : {
             family : 'Gotham Black Regular';
             size   : 20px;
           }
-          cursor          : default;
-          border-radius   : $softBorderRadius;
-          box-shadow      : $paperBoxShadow;
+          cursor             : default;
+          border-radius      : $softBorderRadius;
+          box-shadow         : $softShadow;
+          -webkit-box-shadow : $softShadow;
         }
 
         // Sidebar Links Section //
@@ -990,12 +1000,39 @@ h6 {
           align-items : center;
 
           & .list {
-            width    : 90%;
-            margin   : 10px 0 0 0;
-            overflow : hidden;
+            width              : 90%;
+            margin             : 10px 0 0 0;
+            overflow           : hidden;
+            box-shadow         : $softShadow;
+            -webkit-box-shadow : $softShadow;
 
             & .link {
               text-decoration : none;
+
+              &.thrive {
+                .listItem {
+                  background : $mainRasp;
+
+                  &:hover {
+                    background : transparent;
+                    box-shadow : inset 0 0 0 4px $mainRasp;
+                    .text * {color : $mainRasp;}
+                    svg.hashtag {stroke : $mainRasp;}
+                  }
+
+                  .text * {
+                    font-family : 'Gotham Black Regular', sans-serif;
+                    font-weight : 700;
+                    color       : $mainWhite;
+                  }
+
+                  & svg.hashtag {
+                    width  : 1.5rem;
+                    height : 1rem;
+                    stroke : $mainWhite;
+                  }
+                }
+              }
 
               & .text {
                 font-family     : 'Gotham Medium', sans-serif;
@@ -1018,14 +1055,15 @@ h6 {
           }
           // Event Card
           & .event.card {
-            display        : flex;
-            flex-direction : column;
-            width          : 90%;
-            margin         : 10px 0;
-            box-shadow     : $cardBoxShadow2;
+            display            : flex;
+            flex-direction     : column;
+            width              : 90%;
+            margin             : 10px 0;
+            box-shadow         : $softShadow;
+            -webkit-box-shadow : $softShadow;
 
             &:hover {
-              box-shadow : $cardBoxShadow4;
+              box-shadow : none;
             }
 
             & .divider {
