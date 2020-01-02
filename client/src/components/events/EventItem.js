@@ -1,38 +1,24 @@
-import React, {useContext} from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import moment from 'moment'
-import EventContext from '../../context/event/eventContext'
 
 import {
     CardActions,
-    IconButton,
+    // IconButton,
 } from '@material-ui/core'
-import {Favorite, Share, MoreVert, Edit, Delete} from '@material-ui/icons'
+// import {Favorite, Share} from '@material-ui/icons'
 
-const EventItem = ({event, isAdmin}) => {
-    const eventContext = useContext(EventContext)
-    const {deleteEvent, setCurrent, clearCurrent} = eventContext
-
-    const {_id, name, description, startDate, finishDate, location, image, links, meta} = event
+const EventItem = ({event}) => {
+    const {name, description, startDate, finishDate, location, image} = event
+    // links, meta, _id
 
     const date = moment(startDate).format('MMM Do, YYYY @ h:mm a')
     let date2
     if (finishDate !== undefined)
         date2 = moment(finishDate).format('MMM Do, YYYY @ h:mm a')
 
-    const onDelete = e => {
-        e.preventDefault()
-        deleteEvent(_id)
-        clearCurrent()
-    }
-
-    const onEdit = () => setCurrent(event)
-
-    const [expanded, setExpanded] = React.useState(false)
-    const handleExpandClick = () => setExpanded(!expanded)
-
     return (
-        <div className="event paper">
+        <div className="event">
             <div className="body">
                 <div className="image">
                     <img src={image} alt="" />
@@ -61,25 +47,9 @@ const EventItem = ({event, isAdmin}) => {
                         {/*        <Delete />*/}
                         {/*    </IconButton>*/}
                         {/*)}*/}
-                        {/*<IconButton*/}
-                        {/*    className={clsx(classes.expand, {*/}
-                        {/*        [classes.expandOpen]: expanded,*/}
-                        {/*    })}*/}
-                        {/*    onClick={handleExpandClick}*/}
-                        {/*    aria-expanded={expanded}*/}
-                        {/*    aria-label="show more"*/}
-                        {/*>*/}
-                        {/*    <ExpandMore />*/}
-                        {/*</IconButton>*/}
                     </CardActions>
                 </div>
             </div>
-            {/*<Collapse in={expanded} timeout="auto" unmountOnExit>*/}
-            {/*    <CardContent>*/}
-            {/*        <Typography paragraph>{description}</Typography>*/}
-            {/*    </CardContent>*/}
-            {/*</Collapse>*/}
-
         </div>
     )
 }

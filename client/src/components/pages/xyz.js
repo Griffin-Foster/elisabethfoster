@@ -37,7 +37,7 @@ const items = [
   },
 ]
 
-const Test = (props) => {
+const Xyz = (props) => {
   return (
     <div>
       <Index items={items} />
@@ -45,4 +45,4 @@ const Test = (props) => {
   )
 }
 
-export default Test
+export default Xyz

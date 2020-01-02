@@ -25,5 +25,8 @@ $cardBoxShadow4   : 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0,
 // Soft //
 $softGray         : #e8e8e8;
 $softShadow       : 10px 10px 10px 0 rgba($mainBlack, .2), -2px -2px 10px 0 rgba($mainBlack, 0.15);
+$softShadowRasp   : 10px 10px 10px 0 rgba($mainRasp, .4), -2px -2px 10px 0 rgba($mainRasp, 0.15);
+$softShadowCenter : 0px 10px 10px 0 rgba($mainBlack, .2), -2px -2px 10px 0 rgba($mainBlack, 0.15);
 $softUIShadow     : 10px 10px 10px 0 rgba($mainBlack, .2), -2px -2px 10px 0 rgba($mainWhite, 0.5);
+$softTextShadow   : 4px 4px 4px rgba($mainGray, 0.8);
 $softBorderRadius : 4px;

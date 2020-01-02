@@ -33,7 +33,7 @@ const About = () => {
                         Elisabeth started writing poetry as a way to express her feelings and experiences.
                         The Me Too movement and women speaking out against sexual assault and sexual violence liberated
                         her from her silence and made her feel confident that her message would be heard and respected.
-                        She was compelled to write her book,Raspberry Colored Scars, as a part of her own healing process.
+                        She was compelled to write her book, Raspberry Colored Scars, as a part of her own healing process.
                         When Elisabeth is not writing poetry, she enjoys spending time outside and connecting with other creatives.
                     </span>
                 </div>

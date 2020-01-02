@@ -1,6 +1,7 @@
 import React, {Fragment} from 'react'
 import {BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom'
 import Home from './components/pages/Home'
+import Thrive from './components/pages/Thrive'
 import About from './components/pages/About'
 import Events from './components/pages/Events'
 import Blog from './components/pages/Blog'
@@ -39,6 +40,7 @@ const App = () => {
                                 <PrivateRoute exact path="/logout" component={Logout} />
                                 <Redirect exact path="/home" to="/" />
                                 <Route exact path="/" component={Home} />
+                                <Route exact path="/THRIVE" component={Thrive} />
                                 <Route exact path="/about" component={About} />
                                 <Route exact path="/events" component={Events} />
                                 <AdminRoute exact path="/blog" component={Blog} />

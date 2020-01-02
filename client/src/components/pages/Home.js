@@ -26,9 +26,6 @@ const Home = () => {
                     </div>
                 </div>
                 <div className="links">
-                    {/*<div className="section general">*/}
-                    {/*    <NavigationLinks />*/}
-                    {/*</div>*/}
                     <div className="section buttons">
                         <NavigationButtons />
                     </div>
@@ -39,8 +36,6 @@ const Home = () => {
             </div>
             <div className="section right">
                 <Carousel showAll />
-            </div>
-            <div className="section praise">
             </div>
         </div>
     )
